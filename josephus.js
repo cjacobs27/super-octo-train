@@ -30,6 +30,9 @@ function findL() {
   selectedPrime = primeFinder()
   // crowd = 2a + l
   var l = crowd - selectedPrime
+  if (crowd <= 1) {
+  l = 0
+  }
   return l
 }
 
