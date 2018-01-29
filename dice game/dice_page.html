@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,300,600" rel="stylesheet" type="text/css">
+        <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
+        <link type="text/css" rel="stylesheet" href="style2.css">
+
+        <title>Craps</title>
+    </head>
+
+    <body>
+      <div class="container">
+      <div class="item item--1">
+        <button class="btn-new"><i class="ion-ios-plus-outline"></i>New game</button></div>
+      <div class="item item--2"></div>
+      <div class="item item--3">
+      <button class="btn-continue"><i class="ion-ios-plus-outline"></i>Continue</button></div>
+      <div class="item item--4"></div>
+      <div class="item item--5"></div>
+      <div class="item item--6">
+      <div class="player-name shooter" id="shooter">(Shooter)</div></div>
+      <div class="item item--7"><div class="point", id="point">No point set yet</div></div>
+      <div class="item item--8">
+      <div class="betting-box pot-value" id="pot"></div></div>
+      <div class="item item--9">
+            <div class="player-name better" id="better">(Better)</div></div>
+      <div class="item item--10">Betting: <br>
+        <form id="for-against">
+    <input type="radio" name ="foo" id="bet-for-or-against-for" value="for"> For <br>
+    <input type="radio" name ="foo" id="bet-for-or-against-against" value="against"> Against
+  </form></div>
+      <div class="item item--11">
+      <div class="betting-box" id="MoneyCounter-0">11. money counter 0</div></div>
+      <div class="item item--12">
+      <div class="betting-box" id="notification"></div></div>
+      <div class="item item--13">
+      <img src="dice-5.png" alt="Dice" class="dice1"></div>
+      <div class="item item--14"></div>
+      <div class="item item--15">
+        <div class="betting-box" id="MoneyCounter-1">15. money counter 1</div></div>
+      <div class="item item--16">
+        <div class="betting-box label">
+            <div class="player-betting-label">Enter bet amount
+            <br>
+            <form>
+              <input type="text" value="" id="bet-val-0">
+            </form>
+          </div></div></div>
+      <div class="item item--17"></div>
+      <div class="item item--18">
+      <img src="dice-5.png" alt="Dice" class="dice2"></div>
+      <div class="item item--19"></div>
+      <div class="item item--20">
+        <div class="betting-box label">
+            <div class="player-betting-label">Enter bet amount
+            <br>
+            <form>
+              <input type="text" value="" id="bet-val-1">
+            </form>
+          </div></div></div>
+      <div class="item item--21">
+      <button class="btn-bet" id="btn-bet0"><i class="ion-ios-plus-outline"></i>Submit Bet</button></div>
+      <div class="item item--22"></div>
+      <div class="item item--23">
+        <button class="btn-roll"><i class="ion-ios-loop"></i>Roll dice</button></div>
+      <div class="item item--24"></div>
+      <div class="item item--25">
+      <button class="btn-bet" id="btn-bet1"><i class="ion-ios-plus-outline"></i>Submit Bet</button></div>
+      </div>
+
+        <script src="app.js"></script>
+    </body>
+</html>
