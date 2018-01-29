@@ -35,7 +35,7 @@ return {
 
 var controller = (function(gameCtrl, uiCtrl) {
 
-      function resetGame(){
+      var resetGame = function(){
         var DOMstrings = uiCtrl.getDOMstrings();
         continues = 0;
         round = 0;
@@ -71,10 +71,10 @@ var controller = (function(gameCtrl, uiCtrl) {
         return DOMstrings
       };
 
-    function setupEventListeners() {
+    var setupEventListeners = function () {
       var DOMstrings = uiCtrl.getDOMstrings();
 
-      // set up event listeners
+      // set up event listeners (commented out ones with no methods yet)
       // document.querySelector(DOMstrings.rollButton).addEventListener('click', btnRoll)
       // document.querySelector(DOMstrings.continueButton).addEventListener('click', continueGame)
       document.querySelector(DOMstrings.newGameButton).addEventListener('click', controller.init)
