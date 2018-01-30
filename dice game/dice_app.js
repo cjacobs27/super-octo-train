@@ -2,6 +2,29 @@
 
 var gameCtrl = (function() {
 // put ALL gameCtrl methods etc in here - this is an ARRAY containing other arrays and methods
+// this object is updated each round, so calculations like new Pot Value can be done on the object
+
+// var makeFirstRound = function(){
+  var Round = function(roundCount,p1MoneyCounter,p2MoneyCounter,continues,potValue,gameEnd,
+  forOrAgainst,activePlayer,passivePlayer){
+    this.roundCount = 0;
+    this.p1MoneyCounter = 100;
+    this.p2MoneyCounter = 100;
+    this.continues = 0;
+    this.potValue = 0;
+    this.gameEnd = 0;
+    this.forOrAgainst = 0;
+    this.activePlayer = 0;
+    this.passivePlayer = 1;
+}
+
+return {
+  makeFirstRound: function() {
+    var round = new Round(0,100,100,0,0,0,0,0,1);
+    return round
+  }
+  }
+
 })();
 
 // UI CONTROLLER
@@ -37,25 +60,11 @@ var controller = (function(gameCtrl, uiCtrl) {
 
       var resetGame = function(){
         var DOMstrings = uiCtrl.getDOMstrings();
-        continues = 0;
-        round = 0;
-        bettingTime = 1;
-        // MoneyCounter-0
-        shooterMoneyCounter = 100;
-        //MoneyCounter-1
-        betterMoneyCounter = 100;
-        potValue = 0;
-        shooterBet = 0;
-        betterBet = 0;
-        forOrAgainst = 0;
-        forOrAgainstChosen = 0;
-        activePlayer = 0;
-        passivePlayer = 1;
-        gameend = 0;
+        var round = gameCtrl.makeFirstRound();
 
-        document.querySelector(DOMstrings.moneyCounter + activePlayer).textContent = "£" + shooterMoneyCounter
-        document.querySelector(DOMstrings.moneyCounter + passivePlayer).textContent = "£" + betterMoneyCounter
-        document.querySelector(DOMstrings.pot).textContent = "£" + potValue
+        document.querySelector(DOMstrings.moneyCounter + round.activePlayer).textContent = "£" + round.p1MoneyCounter
+        document.querySelector(DOMstrings.moneyCounter + round.passivePlayer).textContent = "£" + round.p2MoneyCounter
+        document.querySelector(DOMstrings.pot).textContent = "£" + round.potValue
         document.querySelector(DOMstrings.notificationBox).textContent =
         "Please flip a coin to decide who's Player 1 (who rolls the dice in the first round), then ante up"
         diceDOM1 = document.querySelector(DOMstrings.dice1)
@@ -88,6 +97,7 @@ var controller = (function(gameCtrl, uiCtrl) {
         console.log('Application has started.');
         resetGame();
         setupEventListeners();
+
       }
 
 }
