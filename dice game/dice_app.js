@@ -58,6 +58,8 @@ var uiCtrl = (function() {
     2: "Ok, time to roll the dice!",
   }
 
+  //the below doesn't work and I don't know why. Variables/arguments are undefined when called by method in submitBet in controller
+
   // var updateUi = function(potValue, activePlayer, passivePlayer, leftMoneyCounter,
   //   rightMoneyCounter, showRollButton) {
   //   document.querySelector(DOMstrings.pot).textContent = "£" + potValue;
@@ -66,18 +68,8 @@ var uiCtrl = (function() {
   //   //           betterMoneyCounter = (betterMoneyCounter - betterBet)
   //
   //   document.querySelector(DOMstrings.rollButton).style.display = showRollButton;
+  //   console.log("UI updated")
   // };
-
-  var updateUi = function(potValue, activePlayer, passivePlayer, leftMoneyCounter,
-    rightMoneyCounter, showRollButton) {
-    document.querySelector(DOMstrings.pot).textContent = "£" + potValue;
-    document.querySelector(DOMstrings.moneyCounter + activePlayer).textContent = "£" + leftMoneyCounter
-    document.querySelector(DOMstrings.moneyCounter + passivePlayer).textContent = "£" + rightMoneyCounter
-    //           betterMoneyCounter = (betterMoneyCounter - betterBet)
-
-    document.querySelector(DOMstrings.rollButton).style.display = showRollButton;
-    console.log("UI updated")
-  };
 
 return {
   getDOMstrings: function() {
@@ -86,10 +78,10 @@ return {
   getGameMessages: function() {
     return gameMessages;
   },
-  updateUi: function(potValue, activePlayer, passivePlayer, leftMoneyCounter,
-    rightMoneyCounter, showRollButton) {
-    return updateUi();
-  }
+  // updateUi: function(potValue, activePlayer, passivePlayer, leftMoneyCounter,
+  //   rightMoneyCounter, showRollButton) {
+  //   return updateUi();
+  // }
 }
 
 })();
@@ -134,8 +126,22 @@ var controller = (function(gameCtrl, uiCtrl) {
           return document.querySelector(DOMstrings.notificationBox).innerHTML = gameMessages[round.message]
         };
 
+/// THIS ALMOST CERTAINLY SHOULDN'T BE HERE BUT IDK HOW ELSE TO GET THE ARGS INTO IT (see gameCtrl above)
+
+    var updateUi = function(potValue, activePlayer, passivePlayer, leftMoneyCounter,
+        rightMoneyCounter, showRollButton) {
+        document.querySelector(DOMstrings.pot).textContent = "£" + potValue;
+        document.querySelector(DOMstrings.moneyCounter + activePlayer).textContent = "£" + leftMoneyCounter
+        document.querySelector(DOMstrings.moneyCounter + passivePlayer).textContent = "£" + rightMoneyCounter
+        //           betterMoneyCounter = (betterMoneyCounter - betterBet)
+
+        document.querySelector(DOMstrings.rollButton).style.display = showRollButton;
+        console.log("UI updated")
+      };
+
     var submitBet = function() {
       console.log("Submit bet button worked.");
+      gameCtrl.calcBet
       var DOMstrings = uiCtrl.getDOMstrings();
         shooterBet = Number(document.querySelector(DOMstrings.leftBetAmount).value)
         // makes sure passive player is set to correct person
@@ -154,22 +160,12 @@ var controller = (function(gameCtrl, uiCtrl) {
         }
         else {
                 if (betterBet <= betterMoneyCounter && betterBet == shooterBet) {
-        //           potValue = Number(potValue) + Number(betterBet);
-        //           document.querySelector("#pot").textContent = "£" + potValue
-        //           document.querySelector('#MoneyCounter-' + passivePlayer).textContent = "£" + (betterMoneyCounter - betterBet)
-        //           betterMoneyCounter = (betterMoneyCounter - betterBet)
-        //           document.querySelector('.btn-roll').style.display = 'initial';
-        //           document.querySelector('#notification').innerHTML =
-        //           "Ok, time to roll the dice!";
                       round.message = 2;
                       round.potValue = round.potValue + Number(betterBet) + Number(shooterBet)
                       round.p1MoneyCounter = round.p1MoneyCounter - Number(shooterBet);
                       round.p2MoneyCounter = round.p2MoneyCounter - Number(betterBet);
                       controller.updateMessage();
-                      // uiCtrl.updateUi(round.potValue,round.activePlayer,round.passivePlayer,
-                      //   round.p1MoneyCounter,round.p2MoneyCounter,'initial');
-                      uiCtrl.updateUi(333,0,1,
-                        666,777,'initial');
+                      controller.updateUi();
                         console.log(round)
         //           bettingTime = 0
                 }
@@ -252,6 +248,10 @@ var controller = (function(gameCtrl, uiCtrl) {
         },
       submitBet: function() {
         submitBet();
+      },
+      updateUi: function() {
+        updateUi(round.potValue,round.activePlayer,round.passivePlayer,
+          round.p1MoneyCounter,round.p2MoneyCounter,'initial');
       }
 
 }
