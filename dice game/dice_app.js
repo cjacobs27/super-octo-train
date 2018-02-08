@@ -101,7 +101,6 @@ var controller = (function(gameCtrl, uiCtrl) {
         document.querySelector(DOMstrings.moneyCounter + round.passivePlayer).textContent = "£" + round.p2MoneyCounter
         document.querySelector(DOMstrings.pot).textContent = "£" + round.potValue
 
-// messages like these could go into a MAP once the app is ready for ES6 (to keep them organised)
         document.querySelector(DOMstrings.notificationBox).innerHTML = gameMessages[round.message]
 
         diceDOM1 = document.querySelector(DOMstrings.dice1)
