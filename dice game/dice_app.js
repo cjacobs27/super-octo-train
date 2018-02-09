@@ -15,18 +15,43 @@ class Round {
     this.passivePlayer = passivePlayer;
     this.message = message;
   }
-  calcBet () {
+  // updateRoundObject (roundCount, p1MoneyCounter, p2MoneyCounter, continues, potValue, gameEnd,
+  // forOrAgainst, forOrAgainstChosen, activePlayer, passivePlayer, message) {
+  //
+  // }
+  calcBet (shooterMoneyCounter, betterMoneyCounter, shooterBet, betterBet, potValue) {
     console.log("(This is filler) - calcbet called")
     // method to calculate new potValue and left and right money counter values
     // before a bet is submitted by the submitBet method
-    //           betterMoneyCounter = (betterMoneyCounter - betterBet)
+    let newShooterMoneyCounter = Number(shooterMoneyCounter) - Number(shooterBet);
+    let newBetterMoneyCounter = betterMoneyCounter - betterBet;
+    let oldPotValue = potValue;
+    let newPotValue = newBetterMoneyCounter + newShooterMoneyCounter + oldPotValue;
+    let newMoneyValues = [newShooterMoneyCounter, newBetterMoneyCounter, newPotValue];
+    return newMoneyValues;
   }
   submitBet () {
       console.log("(This is filler) - submit bet button clicked")
-    // submitBet method
-    // var submitBet = function() {
-    //   console.log("Submit bet button worked.");
-    //   gameCtrl.calcBet
+      let betArray = ui.getBettingValues();
+      let shooterMoneyCounter = betArray[0];
+      let betterMoneyCounter = betArray[1];
+      let shooterBet = betArray[2];
+      let betterBet = betArray[3];
+      let potValue = betArray[4];
+      // do calculations with betting info
+      // console.log(shooterMoneyCounter, betterMoneyCounter,
+      //   shooterBet, betterBet, potValue)
+      let newMoneyValues = round.calcBet(shooterMoneyCounter, betterMoneyCounter,
+        shooterBet, betterBet, potValue)
+      console.log(newMoneyValues)
+    // update the relevant values in the Round object
+
+    //update the ui
+    // ui.updateUi();
+
+    // then use that basic code in the following if/else
+
+
     //   var DOMstrings = uiCtrl.getDOMstrings();
     //     shooterBet = Number(document.querySelector(DOMstrings.leftBetAmount).value)
     //     // makes sure passive player is set to correct person
@@ -152,11 +177,8 @@ class uiCtrl {
           document.querySelector(DOMstrings.rollButton).style.display = 'initial';
           console.log("UI updated")
         }
-    // resetGame (round.potValue, round.activePlayer, round.passivePlayer, round.leftMoneyCounter,
-    //     round.rightMoneyCounter, round.showRollButton) {
     resetGame () {
           let DOMstrings = this.returnDOMstrings()
-          // let round =
           document.querySelector(DOMstrings.moneyCounter + round.activePlayer).textContent = "£" + round.p1MoneyCounter
           document.querySelector(DOMstrings.moneyCounter + round.passivePlayer).textContent = "£" + round.p2MoneyCounter
           document.querySelector(DOMstrings.pot).textContent = "£" + round.potValue
@@ -176,13 +198,22 @@ class uiCtrl {
           document.querySelector(DOMstrings.notificationBox).classList.remove('label')
           console.log("New Game button clicked")
         }
-      // updateMessage (round.message) {
-          updateMessage () {
+      updateMessage () {
           console.log("Notification updated")
           // this returns whatever the round message property has been set to
           // so updateMessage needs to be called every time message changes
           return document.querySelector(DOMstrings.notificationBox).innerHTML = this.gameMessages[round.message]
         }
+      getBettingValues () {
+        let DOMstrings = this.returnDOMstrings();
+        let shooterMoneyCounter = document.querySelector(DOMstrings.moneyCounter + round.activePlayer).textContent - "£";
+        let betterMoneyCounter = document.querySelector(DOMstrings.moneyCounter + round.passivePlayer).textContent - "£";
+        let shooterBet = document.querySelector(DOMstrings.leftBetAmount).value;
+        let betterBet = document.querySelector(DOMstrings.rightBetAmount).value;
+        let potValue = document.querySelector(DOMstrings.pot).textContent - "£";
+        let betArray = [shooterMoneyCounter,betterMoneyCounter,shooterBet,betterBet,potValue];
+        return betArray;
+      }
   };
 
 
