@@ -53,14 +53,14 @@ class Round {
       //   shooterBet, betterBet, potValue)
       let newMoneyValues = round.calcBet(shooterMoneyCounter, betterMoneyCounter,
         shooterBet, betterBet, potValue);
-      console.log("newMoneyValues: " + newMoneyValues);
-      console.log("new shooter money counter value: " + newMoneyValues[0]);
-      console.log("new better money counter value: " + newMoneyValues[1]);
-      console.log("new pot value: " + newMoneyValues[2]);
+      // console.log("newMoneyValues: " + newMoneyValues);
+      // console.log("new shooter money counter value: " + newMoneyValues[0]);
+      // console.log("new better money counter value: " + newMoneyValues[1]);
+      // console.log("new pot value: " + newMoneyValues[2]);
     // update the relevant values in the Round object
       round.updateRoundObject((round.roundCount+1),newMoneyValues[0],newMoneyValues[1],0,(newMoneyValues[2]),0,0,0,0,1,0)
     //update the ui
-    // ui.updateUi();
+    ui.updateUi();
 
     // then use that basic code in the following if/else
 
@@ -184,11 +184,13 @@ class uiCtrl {
   // updateUi (round.potValue, round.activePlayer, round.passivePlayer, round.leftMoneyCounter,
   //     round.rightMoneyCounter) {
   updateUi () {
-        document.querySelector(DOMstrings.pot).textContent = "£" + round.potValue;
-        document.querySelector(DOMstrings.moneyCounter + round.activePlayer).textContent = "£" + round.leftMoneyCounter
-        document.querySelector(DOMstrings.moneyCounter + round.passivePlayer).textContent = "£" + round.rightMoneyCounter
-          document.querySelector(DOMstrings.rollButton).style.display = 'initial';
-          console.log("UI updated")
+        let DOMstrings = this.returnDOMstrings()
+        document.querySelector(DOMstrings.pot).textContent = "£" + round.potValue
+        // console.log(round.potValue)
+        document.querySelector(DOMstrings.moneyCounter + round.activePlayer).textContent = "£" + round.p1MoneyCounter
+        document.querySelector(DOMstrings.moneyCounter + round.passivePlayer).textContent = "£" + round.p2MoneyCounter
+        document.querySelector(DOMstrings.rollButton).style.display = 'initial';
+        console.log("UI updated")
         }
     resetGame () {
           let DOMstrings = this.returnDOMstrings()
