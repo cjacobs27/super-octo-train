@@ -15,18 +15,28 @@ class Round {
     this.passivePlayer = passivePlayer;
     this.message = message;
   }
-  // updateRoundObject (roundCount, p1MoneyCounter, p2MoneyCounter, continues, potValue, gameEnd,
-  // forOrAgainst, forOrAgainstChosen, activePlayer, passivePlayer, message) {
-  //
-  // }
+  updateRoundObject (roundCount, p1MoneyCounter, p2MoneyCounter, continues, potValue, gameEnd,
+      forOrAgainst, forOrAgainstChosen, activePlayer, passivePlayer, message) {
+        round.roundCount = roundCount;
+        round.p1MoneyCounter = p1MoneyCounter;
+        round.p2MoneyCounter = p2MoneyCounter;
+        round.continues = continues;
+        round.potValue = potValue;
+        round.gameEnd = gameEnd;
+        round.forOrAgainst = forOrAgainst;
+        round.forOrAgainstChosen = forOrAgainstChosen;
+        round.activePlayer = activePlayer;
+        round.passivePlayer = passivePlayer;
+        round.message = message;
+  }
   calcBet (shooterMoneyCounter, betterMoneyCounter, shooterBet, betterBet, potValue) {
     console.log("(This is filler) - calcbet called")
     // method to calculate new potValue and left and right money counter values
     // before a bet is submitted by the submitBet method
-    let newShooterMoneyCounter = Number(shooterMoneyCounter) - Number(shooterBet);
+    let newShooterMoneyCounter = shooterMoneyCounter - shooterBet;
     let newBetterMoneyCounter = betterMoneyCounter - betterBet;
-    let oldPotValue = potValue;
-    let newPotValue = newBetterMoneyCounter + newShooterMoneyCounter + oldPotValue;
+    let oldPotValue = Number(potValue);
+    let newPotValue = Number(betterBet) + Number(shooterBet) + Number(oldPotValue);
     let newMoneyValues = [newShooterMoneyCounter, newBetterMoneyCounter, newPotValue];
     return newMoneyValues;
   }
@@ -42,10 +52,13 @@ class Round {
       // console.log(shooterMoneyCounter, betterMoneyCounter,
       //   shooterBet, betterBet, potValue)
       let newMoneyValues = round.calcBet(shooterMoneyCounter, betterMoneyCounter,
-        shooterBet, betterBet, potValue)
-      console.log(newMoneyValues)
+        shooterBet, betterBet, potValue);
+      console.log("newMoneyValues: " + newMoneyValues);
+      console.log("new shooter money counter value: " + newMoneyValues[0]);
+      console.log("new better money counter value: " + newMoneyValues[1]);
+      console.log("new pot value: " + newMoneyValues[2]);
     // update the relevant values in the Round object
-
+      round.updateRoundObject((round.roundCount+1),newMoneyValues[0],newMoneyValues[1],0,(newMoneyValues[2]),0,0,0,0,1,0)
     //update the ui
     // ui.updateUi();
 
@@ -206,11 +219,11 @@ class uiCtrl {
         }
       getBettingValues () {
         let DOMstrings = this.returnDOMstrings();
-        let shooterMoneyCounter = document.querySelector(DOMstrings.moneyCounter + round.activePlayer).textContent - "£";
-        let betterMoneyCounter = document.querySelector(DOMstrings.moneyCounter + round.passivePlayer).textContent - "£";
+        let shooterMoneyCounter = document.querySelector(DOMstrings.moneyCounter + round.activePlayer).textContent.replace("£","");
+        let betterMoneyCounter = document.querySelector(DOMstrings.moneyCounter + round.passivePlayer).textContent.replace("£","");
         let shooterBet = document.querySelector(DOMstrings.leftBetAmount).value;
         let betterBet = document.querySelector(DOMstrings.rightBetAmount).value;
-        let potValue = document.querySelector(DOMstrings.pot).textContent - "£";
+        let potValue = document.querySelector(DOMstrings.pot).textContent.replace("£","");
         let betArray = [shooterMoneyCounter,betterMoneyCounter,shooterBet,betterBet,potValue];
         return betArray;
       }
