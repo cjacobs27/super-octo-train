@@ -46,58 +46,37 @@ class Round {
   }
 
 checkGameEndFirstRound(d1,d2) {
+    let DOMstrings = ui.returnDOMstrings()
     let firstRoll = d1 + d2
     console.log(firstRoll)
-  //   if (firstRoll == 7) {
-  //     gameend = 1
-  //     document.querySelector('#notification').classList.remove('label')
-  //     document.querySelector('#notification').innerHTML = '<b>' + firstRoll + '</b>' +
-  //     '<br>' + "Player 1 wins the pot!" + "<br>" +
-  //     "Hit Continue to SWITCH SIDES and carry on with the game - or New Game to start again.";
-  //     shooterWinsWholePot()
-  //       }
-  //   else if (firstRoll == 11) {
-  //     gameend = 1
-  //       document.querySelector('#notification').classList.remove('label')
-  //       document.querySelector('#notification').innerHTML = '<b>' + firstRoll + '</b>' +
-  //       '<br>' + "Player 1 wins the pot!" + "<br>" +
-  //       "Hit Continue to SWITCH SIDES and carry on with the game - or New Game to start again.";
-  //       shooterWinsWholePot()
-  //     }
-  //   else if (firstRoll == 2) {
-  //     gameend = 1
-  //     document.querySelector('#notification').classList.add('label')
-  //     document.querySelector('#notification').innerHTML = firstRoll +
-  //     '<br>' + "The shooter crapped out! Player 2 wins the pot." + "<br>" +
-  //     "Hit Continue to SWITCH SIDES and carry on with the game - or New Game to start again.";
-  //     betterWinsWholePot()
-  //   }
-  //   else if (firstRoll == 3) {
-  //     gameend = 1
-  //     document.querySelector('#notification').classList.add('label')
-  //     document.querySelector('#notification').innerHTML = firstRoll +
-  //     '<br>' + "The shooter crapped out! Player 2 wins the pot." + "<br>" +
-  //     "Hit Continue to SWITCH SIDES and carry on with the game - or New Game to start again.";
-  //     betterWinsWholePot()
-  //   }
-  //   else if (firstRoll == 12) {
-  //     gameend = 1
-  //     document.querySelector('#notification').classList.add('label')
-  //     document.querySelector('#notification').innerHTML = firstRoll +
-  //     '<br>' + "The shooter crapped out! Player 2 wins the pot." + "<br>" +
-  //     "Hit Continue to SWITCH SIDES and carry on with the game - or New Game to start again.";
-  //     betterWinsWholePot()
-  //   }
-  //   else {
-  //     document.querySelector('#notification').innerHTML = "Point set!";
-  //     point = firstRoll
-  //     document.querySelector('#point').innerHTML = "POINT SET: " + firstRoll;
-  //     round++
-  //     bettingTime = 1
-  //     timeToBet()
-  //     // now the point is set, a second round of betting begins where Better can pick For or Against
-  //     // after that the dice are rolled again, this time calling checkGameEndNextRound()
-  //   }
+    if (firstRoll == 7 || firstRoll == 11) {
+      round.gameend = 1
+      // document.querySelector('#notification').classList.remove('label')
+      let msg = "<br> Player 1 wins the pot! <br> Hit Continue to SWITCH SIDES and carry on with the game - or New Game to start again."
+      ui.updateWinMessage(firstRoll,msg)
+      console.log("shooterWinsWholePot()")
+      // shooterWinsWholePot()
+        }
+    else if (firstRoll == 2 || firstRoll == 3 || firstRoll == 12) {
+      round.gameend = 1
+      // document.querySelector('#notification').classList.add('label')
+      let msg = "<br> The shooter crapped out! Player 2 wins the pot. <br> Hit Continue to SWITCH SIDES and carry on with the game - or New Game to start again."
+      ui.updateWinMessage(firstRoll,msg)
+      console.log("betterWinsWholePot()")
+      //betterWinsWholePot()
+    }
+    else {
+      round.gameend = 1
+      // document.querySelector('#notification').classList.add('label')
+      let msg = "Point set!"
+      ui.updateWinMessage("",msg)
+      console.log("Point set")
+      let point = firstRoll
+      document.querySelector(DOMstrings.point).innerHTML = "POINT SET: " + firstRoll;
+      round.updateRoundObject(round.roundCount+1);
+      // now the point is set, a second round of betting begins where Better can pick For or Against
+      // after that the dice are rolled again, this time calling checkGameEndNextRound()
+    }
   }
 
   btnRoll() {
@@ -225,6 +204,7 @@ class uiCtrl {
         submitBetButton: '#btn-bet1',
         diceDOM1: document.querySelector('.dice1'),
         diceDOM2: document.querySelector('.dice2'),
+        point: '#point',
       },
       this.gameMessages = {
         0: "Please flip a coin to decide who's Player 1 (who rolls the dice in the first round), then ante up",
@@ -295,6 +275,11 @@ class uiCtrl {
           console.log("Notification updated")
           return document.querySelector(DOMstrings.notificationBox).innerHTML = this.gameMessages[round.message]
         }
+      updateWinMessage (roll, msg) {
+          let DOMstrings = this.returnDOMstrings()
+            console.log("Notification updated")
+            return document.querySelector(DOMstrings.notificationBox).innerHTML = roll + msg
+          }
       getBettingValues () {
         let DOMstrings = this.returnDOMstrings();
         let shooterMoneyCounter = document.querySelector(DOMstrings.moneyCounter + round.activePlayer).textContent.replace("£","");
