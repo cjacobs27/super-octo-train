@@ -29,14 +29,8 @@ class Round {
         round.passivePlayer = passivePlayer;
         round.message = message;
   }
-  setMessage () {
-    if (round.roundCount === 1) {
-      // auto sets to "ok lets roll" - submitBet method will change it again if required
-      round.message = 2;
-    }
-    else {
-      // do nowt
-    }
+  setMessage (messageNumber) {
+      round.message = messageNumber;
   }
 
   calcBet (shooterMoneyCounter, betterMoneyCounter, shooterBet, betterBet, potValue) {
@@ -51,90 +45,65 @@ class Round {
     return newMoneyValues;
   }
 
+  // makes sure passive player is set to correct person
+  // activePlayer === 0 ? passivePlayer = 1 : passivePlayer = 0;
+
   submitBet () {
+      // let DOMstrings = ui.getDOMstrings();
       console.log("(This is filler) - submit bet button clicked")
       let betArray = ui.getBettingValues();
       let shooterMoneyCounter = betArray[0];
       let betterMoneyCounter = betArray[1];
-      let shooterBet = betArray[2];
-      let betterBet = betArray[3];
+      let shooterBet = Number(betArray[2]);
+      let betterBet = Number(betArray[3]);
       let potValue = betArray[4];
       // do calculations with betting info
-      // console.log(shooterMoneyCounter, betterMoneyCounter,
-      //   shooterBet, betterBet, potValue)
       let newMoneyValues = round.calcBet(shooterMoneyCounter, betterMoneyCounter,
         shooterBet, betterBet, potValue);
-      // console.log("newMoneyValues: " + newMoneyValues);
-      // console.log("new shooter money counter value: " + newMoneyValues[0]);
-      // console.log("new better money counter value: " + newMoneyValues[1]);
-      // console.log("new pot value: " + newMoneyValues[2]);
-    // update the relevant values in the Round object
-      round.updateRoundObject((round.roundCount+1),newMoneyValues[0],newMoneyValues[1],0,(newMoneyValues[2]),0,0,0,0,1,0)
-      // set message based on roundCount
-      round.setMessage();
-      //update the ui
-      ui.updateMessage();
-      ui.updateUi();
-
-    // then use that basic code in the following if/else
-
-
-    //   var DOMstrings = uiCtrl.getDOMstrings();
-    //     shooterBet = Number(document.querySelector(DOMstrings.leftBetAmount).value)
-    //     // makes sure passive player is set to correct person
-    //     // activePlayer === 0 ? passivePlayer = 1 : passivePlayer = 0;
-    //     shooterBet = Number(document.querySelector(DOMstrings.leftBetAmount).value)
-    //     betterBet = Number(document.querySelector(DOMstrings.rightBetAmount).value)
-    //     shooterMoneyCounter = Number(document.querySelector(DOMstrings.rightBetAmount).value)
-    //     betterMoneyCounter = Number(document.querySelector(DOMstrings.rightBetAmount).value)
-    //     console.log("shooter bet: " + shooterBet)
-    //     console.log("better bet: " + betterBet)
-    //     if (betterBet <= 0 || shooterBet <= 0 && round.forOrAgainstChosen == 0) {
-    //       // "This round, the shooter\'s bet needs to be matched by the other player.
-    //       // Bets must be greater than 0"
-    //       round.message = 1;
-    //       controller.updateMessage()
-    //     }
-    //     else {
-    //             if (betterBet <= betterMoneyCounter && betterBet == shooterBet) {
-    //                   round.message = 2;
-    //                   round.potValue = round.potValue + Number(betterBet) + Number(shooterBet)
-    //                   round.p1MoneyCounter = round.p1MoneyCounter - Number(shooterBet);
-    //                   round.p2MoneyCounter = round.p2MoneyCounter - Number(betterBet);
-    //                   controller.updateMessage();
-    //                   controller.updateUi();
-    //                     console.log(round)
-    //     //           bettingTime = 0
-    //             }
-    //             else {
-    //               console.log("submit bet second else triggered")
-    //             }
-    //     //         else if (Number(betterBet) !== Number(shooterBet) && forOrAgainst == 0) {
-    //     //           document.querySelector('#notification').innerHTML =
-    //     //           "Your bet needs to match Player 1's bet, since you picked For. I'd do it automatically but I"
-    //     //           + " don't know any jQuery yet :(";
-    //     //         }
-    //     //         else if (Number(betterBet) !== Number(shooterBet) && forOrAgainst == 1) {
-    //     //           potValue = Number(potValue) + Number(betterBet);
-    //     //           document.querySelector("#pot").textContent = "£" + potValue
-    //     //           document.getElementById('MoneyCounter' + passivePlayer).textContent = "£" + (betterMoneyCounter - betterBet)
-    //     //           betterMoneyCounter = (betterMoneyCounter - betterBet)
-    //     //           document.querySelector('.btn-roll').style.display = 'initial';
-    //     //           document.querySelector('#notification').innerHTML =
-    //     //           "Ok, time to roll again.";
-    //     //           bettingTime = 0
-    //     //         }
+        if (betterBet <= 0 || shooterBet <= 0 && round.forOrAgainstChosen == 0) {
+          // "This round, the shooter\'s bet needs to be matched by the other player.
+          // Bets must be greater than 0"
+          // round is NOT UPDATED UNTIL THE BET IS VALID
+          round.setMessage(1);
+          ui.updateMessage();
+          ui.updateUi();
+          ui.displayRollBtn();
+        }
+        else {
+          // if both players can afford bet AND the bets are equal (as always on 1st round)
+                if (betterBet <= betterMoneyCounter && betterBet == shooterBet) {
+                  // update the relevant values in the Round object
+                    round.updateRoundObject((round.roundCount+1),newMoneyValues[0],newMoneyValues[1],0,(newMoneyValues[2]),0,0,0,0,1,0);
+                  // set message based on roundCount
+                  round.setMessage(2);
+                  // update the ui
+                  ui.updateMessage();
+                  ui.updateUi();
+                  ui.displayRollBtn();
+                  console.log("triggered")
+                }
+                // else {
+                //   console.log("submit bet second else triggered")
+                // }
+                else if (betterBet !== shooterBet && round.forOrAgainst == 0) {
+                  // if the bets don't match before for/against chosen
+                  round.setMessage(3);
+                  ui.updateMessage();
+                  ui.updateUi();
+                }
+                // TEST THIS WHEN DICE ROLL & FORORAGAINST SELECTOR IMPLEMENTED
+                else if (betterBet !== shooterBet && round.forOrAgainst == 1) {
+                round.updateRoundObject((round.roundCount+1),newMoneyValues[0],newMoneyValues[1],0,(newMoneyValues[2]),0,0,0,0,1,0);
+                // set message based on roundCount
+                round.setMessage(4);
+                // update the ui
+                ui.updateMessage();
+                ui.updateUi();
+                ui.displayRollBtn();
+                }
     //     //         else if (betterBet > betterMoneyCounter){
     //     //           document.querySelector('#notification').innerHTML =
     //     //           "You can't bet more money than you have!";
-    //     //         }
-    //     //         else if (bettingTime == 0) {
-    //     //           document.querySelector('#notification').innerHTML =
-    //     //           "You can't bet right now.";
-    //     //         }
-    //     //         else if (betterBet <= 0) {
-    //     //           document.querySelector('#notification').innerHTML =
-    //     //           "You can't bet negative money.";
     //     //         }
     //     //         else if (bettingTime == 1 && forOrAgainstChosen == 1) {
     //     //           potValue = Number(potValue) + Number(shooterBet);
@@ -161,6 +130,7 @@ class Round {
     //   }
     }
   }
+  }
 
 
 
@@ -185,8 +155,10 @@ class uiCtrl {
       },
       this.gameMessages = {
         0: "Please flip a coin to decide who's Player 1 (who rolls the dice in the first round), then ante up",
-        1: "This round, the shooter\'s bet needs to be matched by the other player. Bets must be greater than 0.",
+        1: "Bets must be greater than 0.",
         2: "Ok, time to roll the dice!",
+        3: "This round, the shooter\'s bet needs to be matched by the other player.",
+        4: "Ok, time to roll again.",
       }
   }
       returnDOMstrings () {
@@ -195,17 +167,19 @@ class uiCtrl {
       returnGameMessages () {
         return this.gameMessages
       }
-  // updateUi (round.potValue, round.activePlayer, round.passivePlayer, round.leftMoneyCounter,
-  //     round.rightMoneyCounter) {
+
   updateUi () {
         let DOMstrings = this.returnDOMstrings()
         document.querySelector(DOMstrings.pot).textContent = "£" + round.potValue
         // console.log(round.potValue)
         document.querySelector(DOMstrings.moneyCounter + round.activePlayer).textContent = "£" + round.p1MoneyCounter
         document.querySelector(DOMstrings.moneyCounter + round.passivePlayer).textContent = "£" + round.p2MoneyCounter
-        document.querySelector(DOMstrings.rollButton).style.display = 'initial';
         console.log("UI updated")
         }
+  displayRollBtn() {
+    let DOMstrings = this.returnDOMstrings()
+        document.querySelector(DOMstrings.rollButton).style.display = 'initial';
+  }
     resetGame () {
           let DOMstrings = this.returnDOMstrings()
           document.querySelector(DOMstrings.moneyCounter + round.activePlayer).textContent = "£" + round.p1MoneyCounter
@@ -230,8 +204,6 @@ class uiCtrl {
       updateMessage () {
         let DOMstrings = this.returnDOMstrings()
           console.log("Notification updated")
-          // this returns whatever the round message property has been set to
-          // so updateMessage needs to be called every time message changes
           return document.querySelector(DOMstrings.notificationBox).innerHTML = this.gameMessages[round.message]
         }
       getBettingValues () {
