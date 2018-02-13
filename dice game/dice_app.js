@@ -53,7 +53,7 @@ class Round {
       console.log("(This is filler) - submit bet button clicked")
       let betArray = ui.getBettingValues();
       let shooterMoneyCounter = betArray[0];
-      let betterMoneyCounter = betArray[1];
+      let betterMoneyCounter = Number(betArray[1]);
       let shooterBet = Number(betArray[2]);
       let betterBet = Number(betArray[3]);
       let potValue = betArray[4];
@@ -101,10 +101,15 @@ class Round {
                 ui.updateUi();
                 ui.displayRollBtn();
                 }
-    //     //         else if (betterBet > betterMoneyCounter){
-    //     //           document.querySelector('#notification').innerHTML =
-    //     //           "You can't bet more money than you have!";
-    //     //         }
+                else if (shooterBet > shooterMoneyCounter||betterBet > betterMoneyCounter) {
+                  // can't bet more money than you have
+                  round.setMessage(5);
+                  ui.updateMessage();
+                  ui.updateUi();
+                }
+
+                //the rest of this needs to be implemented once for/against chooser works
+
     //     //         else if (bettingTime == 1 && forOrAgainstChosen == 1) {
     //     //           potValue = Number(potValue) + Number(shooterBet);
     //     //           document.querySelector("#pot").textContent = "£" + potValue
@@ -114,20 +119,11 @@ class Round {
     //     //           "Player 1 doesn't have to match that bet if they don't want to.";
     //     //           //bettingTime = 0
     //     //         }
-    //     //       else {
-    //     //         bettingTime = 0
-    //     //         document.querySelector('#notification').innerHTML =
-    //     //         "Ok, time to roll the dice.";
-    //     //         document.querySelector('.btn-roll').style.display = 'initial';
-    //     //       }}
     //     // else if (betterBet == "0" && forOrAgainstChosen == 1 && forOrAgainst == 1) {
     //     //   document.querySelector('#notification').innerHTML =
     //     //   "The better chose not to bet.";
     //     // }
-    //     // else {
-    //     //   //nothing
-    //     // }
-    //   }
+
     }
   }
   }
@@ -159,6 +155,7 @@ class uiCtrl {
         2: "Ok, time to roll the dice!",
         3: "This round, the shooter\'s bet needs to be matched by the other player.",
         4: "Ok, time to roll again.",
+        5: "You can't bet more money than you have!",
       }
   }
       returnDOMstrings () {
