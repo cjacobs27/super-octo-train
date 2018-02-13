@@ -54,30 +54,76 @@ checkGameEndFirstRound(d1,d2) {
       // document.querySelector('#notification').classList.remove('label')
       let msg = "<br> Player 1 wins the pot! <br> Hit Continue to SWITCH SIDES and carry on with the game - or New Game to start again."
       ui.updateWinMessage(firstRoll,msg)
-      console.log("shooterWinsWholePot()")
-      // shooterWinsWholePot()
+      ui.shooterWinsWholePot()
         }
     else if (firstRoll == 2 || firstRoll == 3 || firstRoll == 12) {
       round.gameend = 1
       // document.querySelector('#notification').classList.add('label')
       let msg = "<br> The shooter crapped out! Player 2 wins the pot. <br> Hit Continue to SWITCH SIDES and carry on with the game - or New Game to start again."
       ui.updateWinMessage(firstRoll,msg)
-      console.log("betterWinsWholePot()")
-      //betterWinsWholePot()
+      ui.betterWinsWholePot()
     }
     else {
-      round.gameend = 1
       // document.querySelector('#notification').classList.add('label')
-      let msg = "Point set!"
+      let msg = "Point set! <br> Player 2, please choose whether you're For or Against the dice shooter, and make a bet. <br>"+
+      "If you choose For and the shooter wins, the shooter has to match your bet and you split the pot with them. <br>"+
+      "If you choose Against, the shooter matches your bet but they take the whole pot if they win - or you get the whole pot if they lose."
       ui.updateWinMessage("",msg)
       console.log("Point set")
       let point = firstRoll
       document.querySelector(DOMstrings.point).innerHTML = "POINT SET: " + firstRoll;
-      round.updateRoundObject(round.roundCount+1);
+      round.updateRoundObject(round.roundCount+1,round.p1MoneyCounter,round.p2MoneyCounter,round.continues,round.potValue,
+        round.gameEnd,round.forOrAgainst,round.forOrAgainstChosen,round.activePlayer,round.passivePlayer,round.message);
+      ui.forOrAgainstMethod();
+      ui.toggleSubmitBtn();
+      ui.toggleRollBtn();
       // now the point is set, a second round of betting begins where Better can pick For or Against
       // after that the dice are rolled again, this time calling checkGameEndNextRound()
     }
   }
+
+  // function checkGameEndNextRound(d1,d2) {
+  //   let DOMstrings = ui.returnDOMstrings()
+  //   document.querySelector(DOMstrings.point).innerHTML.replace("POINT SET:","")
+  //   let nextRoll = dice1 + dice2
+  //   round++
+  //   console.log("roll: " + nextRoll + "forOrAgainst: " + forOrAgainst + "point:" + point)
+  //
+  //   if (nextRoll == point && forOrAgainst == 1) {
+  //     gameend = 1
+  //             document.querySelector('#notification').innerHTML = "Point hit. The shooter wins:"
+  //             + "<br>" + "The other player bet AGAINST so shooter takes the whole pot, plus an additional 50% of the pot from the other player's cash!" +
+  //             "Hit Continue to SWITCH SIDES and carry on with the game - or New Game to start again.";
+  //             //shooterWinsWholePot()
+  //             //this is the ONLY case when this win condition will happen.
+  //             shooterWinsWholePotPlusMore()
+  //           }
+  //   else if (nextRoll == point && forOrAgainst == 0) {
+  //             document.querySelector('#notification').innerHTML = "Point hit. The shooter wins:"
+  //             + "<br>" + "Player 2 bet FOR so they split the pot with the shooter!" +
+  //             "Hit Continue to SWITCH SIDES and carry on with the game - or New Game to start again.";
+  //             splitPot()
+  //           }
+  //   else if (nextRoll == 7 && nextRoll !== point && forOrAgainst == 1) {
+  //           gameend = 1
+  //             document.querySelector('#notification').innerHTML = "The shooter loses:"
+  //             + "<br>" + "Player 2 bet AGAINST so they take the whole pot!" +
+  //             "Hit Continue to SWITCH SIDES and carry on with the game - or New Game to start again.";
+  //             betterWinsWholePot()
+  //           }
+  //   else if (nextRoll == 7 && nextRoll !== point && forOrAgainst == 0) {
+  //             document.querySelector('#notification').innerHTML = "The shooter loses:"
+  //             + "<br>" + "Player 2 bet FOR so they split the pot with the shooter!" +
+  //             "Hit Continue to SWITCH SIDES and carry on with the game - or New Game to start again.";
+  //             splitPot()
+  //           }
+  //   else {
+  //     // gameend remains 0
+  //           bettingTime = 1
+  //           document.querySelector('#notification').classList.remove('label')
+  //           document.querySelector('#notification').innerHTML = "Make bets or keep rolling";
+  //   }
+  // }
 
   btnRoll() {
     let DOMstrings = ui.returnDOMstrings()
@@ -88,17 +134,12 @@ checkGameEndFirstRound(d1,d2) {
     DOMstrings.diceDOM2.src = 'dice-' + dice2 + '.png';
     console.log(dice1 + "   " + dice2)
 
-// 2 methods below need to go in to btnRoll once written
-
     if (round.roundCount == 1) {
       round.checkGameEndFirstRound(dice1,dice2);
     }
-    // else {
-    //   // the first round has special conditions but only 2 win conditions
-    //   // which is shooterWinsWholePot() or betterWinsWholePot()
-    //   // this one has 4 (2 for shooter 2 for better)...
-    //   checkGameEndNextRound();
-    // }
+    else {
+      checkGameEndNextRound();
+    }
   }
 
   // makes sure passive player is set to correct person
@@ -205,6 +246,8 @@ class uiCtrl {
         diceDOM1: document.querySelector('.dice1'),
         diceDOM2: document.querySelector('.dice2'),
         point: '#point',
+        betFor: '#bet-for-or-against-for',
+        betAgainst: '#bet-for-or-against-against',
       },
       this.gameMessages = {
         0: "Please flip a coin to decide who's Player 1 (who rolls the dice in the first round), then ante up",
@@ -249,12 +292,12 @@ class uiCtrl {
         }
       }
     resetGame () {
-          let DOMstrings = this.returnDOMstrings()
+          let DOMstrings = ui.returnDOMstrings()
           document.querySelector(DOMstrings.moneyCounter + round.activePlayer).textContent = "£" + round.p1MoneyCounter
           document.querySelector(DOMstrings.moneyCounter + round.passivePlayer).textContent = "£" + round.p2MoneyCounter
           document.querySelector(DOMstrings.pot).textContent = "£" + round.potValue
 
-          document.querySelector(DOMstrings.notificationBox).innerHTML = this.gameMessages[round.message]
+          document.querySelector(DOMstrings.notificationBox).innerHTML = ui.gameMessages[round.message]
 
           let diceDOM1 = document.querySelector(DOMstrings.dice1)
           let diceDOM2 = document.querySelector(DOMstrings.dice2)
@@ -290,6 +333,54 @@ class uiCtrl {
         let betArray = [shooterMoneyCounter,betterMoneyCounter,shooterBet,betterBet,potValue];
         return betArray;
       }
+      forOrAgainstMethod() {
+        let DOMstrings = this.returnDOMstrings();
+        round.forOrAgainstChosen = 1
+        document.querySelector(DOMstrings.forAgainstSelector).style.display = 'initial';
+        if (document.querySelector(DOMstrings.betFor).checked) {
+          // for = 0, against = 1 (for reference)
+          round.updateRoundObject(round.roundCount+1,round.p1MoneyCounter,round.p2MoneyCounter,round.continues,round.potValue,
+            round.gameEnd,0,1,round.activePlayer,round.passivePlayer,round.message);
+        }
+        else if (document.querySelector(DOMstrings.betAgainst).checked) {
+          round.updateRoundObject(round.roundCount+1,round.p1MoneyCounter,round.p2MoneyCounter,round.continues,round.potValue,
+            round.gameEnd,1,1,round.activePlayer,round.passivePlayer,round.message);
+        }
+        console.log("for or against: " + round.forOrAgainst)
+      }
+      shooterWinsWholePot() {
+        let DOMstrings = this.returnDOMstrings();
+        console.log("shooter wins whole pot")
+              // ui.shooterWinsWholePot() : update shooter's (p1's) money counter with new total & reset pot
+        let potValue = document.querySelector(DOMstrings.pot).textContent.replace("£","")
+        let shooterMoneyCounter = Number(potValue) + Number(round.p1MoneyCounter)
+        document.querySelector(DOMstrings.moneyCounter + round.activePlayer).textContent = "£" + shooterMoneyCounter
+        document.querySelector(DOMstrings.pot).textContent = "£" + "0"
+        //make continue button appear
+        document.querySelector(DOMstrings.continueButton).style.display = 'initial';
+        round.updateRoundObject(round.roundCount+1,shooterMoneyCounter,round.p2MoneyCounter,round.continues,0,
+          1,round.forOrAgainst,round.forOrAgainstChosen,round.activePlayer,round.passivePlayer,round.message),
+        document.querySelector(DOMstrings.rollButton).style.display = 'none';
+        //checkForWinner() (check to see if either has run out of cash)
+      }
+      betterWinsWholePot() {
+        console.log("better wins whole pot")
+        let DOMstrings = this.returnDOMstrings();
+              // ui.shooterWinsWholePot() : update shooter's (p1's) money counter with new total & reset pot
+        let potValue = document.querySelector(DOMstrings.pot).textContent.replace("£","")
+        let betterMoneyCounter = Number(potValue) + Number(round.p2MoneyCounter)
+        document.querySelector(DOMstrings.moneyCounter + round.passivePlayer).textContent = "£" + betterMoneyCounter
+        document.querySelector(DOMstrings.pot).textContent = "£" + "0"
+        //make continue button appear
+        document.querySelector(DOMstrings.continueButton).style.display = 'initial';
+        round.updateRoundObject(round.roundCount+1,round.p1MoneyCounter,betterMoneyCounter,round.continues,0,
+          1,round.forOrAgainst,round.forOrAgainstChosen,round.activePlayer,round.passivePlayer,round.message),
+        document.querySelector(DOMstrings.rollButton).style.display = 'none';
+              //ui.betterWinsWholePot() : update better's (p2's) money counter with new total & reset pot
+      }
+    continueGame() {
+      console.log("Continue clicked")
+    }
   };
 
 
@@ -303,7 +394,7 @@ function init() {
 
   // (commented out ones with no methods yet)
   document.querySelector(DOMstrings.rollButton).addEventListener('click', round.btnRoll)
-  // document.querySelector(DOMstrings.continueButton).addEventListener('click', continueGame)
+  document.querySelector(DOMstrings.continueButton).addEventListener('click', ui.continueGame)
   document.querySelector(DOMstrings.newGameButton).addEventListener('click', ui.resetGame)
   document.querySelector(DOMstrings.submitBetButton).addEventListener('click', round.submitBet)
   console.log("Event listeners set up")
