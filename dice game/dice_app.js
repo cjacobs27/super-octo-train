@@ -29,6 +29,16 @@ class Round {
         round.passivePlayer = passivePlayer;
         round.message = message;
   }
+  setMessage () {
+    if (round.roundCount === 1) {
+      // auto sets to "ok lets roll" - submitBet method will change it again if required
+      round.message = 2;
+    }
+    else {
+      // do nowt
+    }
+  }
+
   calcBet (shooterMoneyCounter, betterMoneyCounter, shooterBet, betterBet, potValue) {
     console.log("(This is filler) - calcbet called")
     // method to calculate new potValue and left and right money counter values
@@ -40,6 +50,7 @@ class Round {
     let newMoneyValues = [newShooterMoneyCounter, newBetterMoneyCounter, newPotValue];
     return newMoneyValues;
   }
+
   submitBet () {
       console.log("(This is filler) - submit bet button clicked")
       let betArray = ui.getBettingValues();
@@ -59,8 +70,11 @@ class Round {
       // console.log("new pot value: " + newMoneyValues[2]);
     // update the relevant values in the Round object
       round.updateRoundObject((round.roundCount+1),newMoneyValues[0],newMoneyValues[1],0,(newMoneyValues[2]),0,0,0,0,1,0)
-    //update the ui
-    ui.updateUi();
+      // set message based on roundCount
+      round.setMessage();
+      //update the ui
+      ui.updateMessage();
+      ui.updateUi();
 
     // then use that basic code in the following if/else
 
@@ -214,6 +228,7 @@ class uiCtrl {
           console.log("New Game button clicked")
         }
       updateMessage () {
+        let DOMstrings = this.returnDOMstrings()
           console.log("Notification updated")
           // this returns whatever the round message property has been set to
           // so updateMessage needs to be called every time message changes
