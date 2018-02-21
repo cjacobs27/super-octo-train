@@ -20,6 +20,14 @@ var Sandwich = React.createClass({
 
     },
 
+    addCondiment: function(e) {
+        var condiment = e.target.value;
+        this.setState({
+            items: this.state.items.concat([condiment]),
+            ingredient: ''
+        });
+    },
+
     removeIngredient: function(e) {
         var ingredientIndex = e.target.value;
         console.log(ingredientIndex);
@@ -40,6 +48,9 @@ var Sandwich = React.createClass({
                     <input onChange={this.onChange} value={this.state.ingredient}/>
                     <button>Add Ingredient</button>
                 </form>
+                <button onClick={this.addCondiment} value={"Ketchup"}>Add Ketchup</button>
+                <button onClick={this.addCondiment} value={"Mustard"}>Add Mustard</button>
+                <button onClick={this.addCondiment} value={"Mayo"}>Add Mayo</button>
 
             </div>
 
