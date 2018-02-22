@@ -1,5 +1,7 @@
 var Sandwich = React.createClass({
 
+    i : 0,
+
     getInitialState: function() {
         return {
             items: [],
@@ -23,7 +25,12 @@ var Sandwich = React.createClass({
     addCondiment: function(e) {
         var condiment = e.target.value;
         this.setState({
-            items: this.state.items.concat([condiment]),
+            i : this.i++,
+            // attempt at fixing issue where multiple ingredients with identical names mean the script always chooses the index
+            // of the first instance of that ingredient in the items array for deletion, eg Bread, Ham, Bread, 3rd bread X clicked
+            // removes FIRST bread from the list. Not perfect as i shouldn't be displayed in list + continues incrementing regardless
+            // of array item deletion.
+            items: this.state.items.concat([condiment + " " + this.i]),
             ingredient: ''
         });
     },
@@ -51,6 +58,8 @@ var Sandwich = React.createClass({
 
                 <br></br>
 
+                <button onClick={this.addCondiment} value={"Bread"}>Add Bread</button>
+                <button onClick={this.addCondiment} value={"Lettuce"}>Add Lettuce</button>
                 <button onClick={this.addCondiment} value={"Ketchup"}>Add Ketchup</button>
                 <button onClick={this.addCondiment} value={"Mustard"}>Add Mustard</button>
                 <button onClick={this.addCondiment} value={"Mayo"}>Add Mayo</button>
