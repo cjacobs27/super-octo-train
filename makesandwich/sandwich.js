@@ -59,11 +59,11 @@ var Sandwich = React.createClass({
 
                 <br></br>
 
-                <button onClick={this.addCondiment} value={"Bread"}>Add Bread</button>
-                <button onClick={this.addCondiment} value={"Lettuce"}>Add Lettuce</button>
-                <button onClick={this.addCondiment} value={"Ketchup"}>Add Ketchup</button>
-                <button onClick={this.addCondiment} value={"Mustard"}>Add Mustard</button>
-                <button onClick={this.addCondiment} value={"Mayo"}>Add Mayo</button>
+                <button onClick={this.addCondiment} value={"Bread"} id={"bread"}>Add Bread</button>
+                <button onClick={this.addCondiment} value={"Lettuce"} id={"lettuce"}>Add Lettuce</button>
+                <button onClick={this.addCondiment} value={"Ketchup"} id={"ketchup"}>Add Ketchup</button>
+                <button onClick={this.addCondiment} value={"Mustard"} id={"mustard"}>Add Mustard</button>
+                <button onClick={this.addCondiment} value={"Mayo"} id={"mayo"}>Add Mayo</button>
 
             </div>
 
