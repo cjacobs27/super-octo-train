@@ -33,6 +33,7 @@ var Sandwich = React.createClass({
             items: this.state.items.concat([condiment + " " + this.i]),
             ingredient: ''
         });
+        React.findDOMNode(this.refs.input).focus();
     },
 
     removeIngredient: function(e) {
@@ -52,7 +53,7 @@ var Sandwich = React.createClass({
                 <Ingredients items={this.state.items} removeIngredient={this.removeIngredient}/>
 
                 <form onSubmit={this.addIngredient}>
-                    <input onChange={this.onChange} value={this.state.ingredient}/>
+                    <input ref="input" onChange={this.onChange} value={this.state.ingredient}/>
                     <button>Add Ingredient</button>
                 </form>
 
