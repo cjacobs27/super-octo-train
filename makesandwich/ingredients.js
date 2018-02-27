@@ -1,8 +1,25 @@
 const Ingredients = React.createClass({
 
+    // getColours: function() {
+    //     this.colors = ['#ff0000', '#00ff00', '#0000ff'];
+    //     this.random_color = this.colors[Math.floor(Math.random() * this.colors.length)];
+    //     // console.log(this.random_color);
+    //     return ({
+    //         color: this.random_color
+    //     });
+    // },
+
+    divColours : {
+        colors : ['#ff0000', '#00ff00', '#0000ff'],
+        // random_color : this.colors[Math.floor(Math.random() * 3)],
+        backgroundColor: '#'+Math.floor(Math.random()*16777215).toString(16),
+        // backgroundColor: this.getColours.color,
+        border: "2px solid #000000",
+    },
+
     render: function() {
         var displayIngredient = (ingredient) =>
-        <div id ={"ing"}><li>{ingredient}
+        <div id ={"ing"} style={this.divColours}><li>{ingredient}
         <button onClick= {this.props.removeIngredient} value={this.props.items.indexOf(ingredient)} id ={"del"}>X</button>
         </li></div>;
 
@@ -14,5 +31,7 @@ const Ingredients = React.createClass({
     }
 
 });
+
+console.log(Ingredients);
 
 React.render(<Sandwich />, document.body);

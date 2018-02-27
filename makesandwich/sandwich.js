@@ -31,6 +31,7 @@ var Sandwich = React.createClass({
             // removes FIRST bread from the list. Not perfect as i shouldn't be displayed in list + continues incrementing regardless
             // of array item deletion.
             items: this.state.items.concat([condiment + " " + this.i]),
+            // items: this.state.items.concat([condiment]),
             ingredient: ''
         });
         React.findDOMNode(this.refs.input).focus();
@@ -44,6 +45,18 @@ var Sandwich = React.createClass({
             return {items: state.items};
         });
     },
+
+    // getColours: function(e) {
+    //     this.colors = ['#ff0000', '#00ff00', '#0000ff'];
+    //     this.random_color = this.colors[Math.floor(Math.random() * this.colors.length)];
+    //     return this.random_color;
+    // },
+
+    // divColours: function(e) {
+    //     // this.document.getElementById('#ing').style.color = random_color;
+    //     color: this.getColors(),
+    //     border: "2px solid #000000",
+    // },
 
     render: function () {
         return (
