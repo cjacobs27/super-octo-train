@@ -4,13 +4,70 @@ body {
     margin-left: 20px;
 }
 
+ul {
+    text-align: center;
+    list-style-type: none;
+}
+
 li {
+    display: inline-block;
     color: #000000;
 }
 
 button {
+    -webkit-transition-duration: 0.4s;
+    border-color: transparent;
     border-radius: 12px;
     background-color: #00ff55;
+}
+
+button:hover {
+    border: 2px solid #000000;
+}
+
+#mustard {
+    background-color: #ffd500;
+}
+
+#mayo {
+    background-color: whitesmoke;
+}
+
+#ketchup {
+    background-color: #E31100;
+}
+
+#lettuce {
+    background-color: lightgreen;
+}
+
+#bread {
+    background-color: #C9AE99;
+}
+
+#del {
+    -webkit-transition-duration: 0.4s;
+    color: #00aaff;
+    font-weight: bold;
+    font-size: xx-small;
+    background-color: #00aaff;
+    border: none;
+}
+
+#del:hover {
+    color: #000000;
+    font-weight: bold;
+    font-size: x-small;
+    background-color: #00aaff;
+    border: 2px solid #000000;
+    border-radius: 50%;
+}
+
+/*ALSO can you set a background-color based on class = ing and ID = bread for example?*/
+#ing {
+    /*change background-color for item colour*/
+    background-color: #00aaff;
+    border: 2px solid #000000;
 }
 
 h1 {

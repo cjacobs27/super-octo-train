@@ -2,8 +2,8 @@ const Ingredients = React.createClass({
 
     render: function() {
         var displayIngredient = (ingredient) =>
-        <div><li>{ingredient}
-        <button onClick= {this.props.removeIngredient} value={this.props.items.indexOf(ingredient)} id ={"ing"}> X </button>
+        <div id ={"ing"}><li>{ingredient}
+        <button onClick= {this.props.removeIngredient} value={this.props.items.indexOf(ingredient)} id ={"del"}>X</button>
         </li></div>;
 
         return (

@@ -51,8 +51,7 @@ var Sandwich = React.createClass({
                 <h1> My Sandwich</h1>
 
                 <Ingredients items={this.state.items} removeIngredient={this.removeIngredient}/>
-
-                <form onSubmit={this.addIngredient}>
+             <form onSubmit={this.addIngredient}>
                     <input ref="input" onChange={this.onChange} value={this.state.ingredient}/>
                     <button>Add Ingredient</button>
                 </form>
