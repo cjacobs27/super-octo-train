@@ -9,10 +9,9 @@ const Ingredients = React.createClass({
     },
 
     render: function() {
-        var displayIngredient = (ingredient) =>
+        var displayIngredient = (ingredient, time) =>
         <div id ={"ing"} style={this.divColours}><li>{ingredient}
-        {/*<button onClick= {this.props.removeIngredient} key= {this.props.timestamp.indexOf(time)} value={this.props.items.indexOf(ingredient)} id ={"del"}>X</button>*/}
-        <button onClick= {this.props.removeIngredient} value={this.props.items.indexOf(ingredient)} id ={"del"}>X</button>
+        <button onClick= {this.props.removeIngredient} value={this.props.timestamp.indexOf(time)} id ={"del"}>X</button>
         </li></div>;
 
         return (
@@ -24,6 +23,5 @@ const Ingredients = React.createClass({
 
 });
 
-console.log(Ingredients);
 
 React.render(<Sandwich />, document.body);

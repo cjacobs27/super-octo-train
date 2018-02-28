@@ -8,7 +8,7 @@ var Sandwich = React.createClass({
             timestamp: [],
             time: '',
             ingredient: '',
-            itemsWithTimestamp: {}
+            // itemsWithTimestamp: {}
         };
     },
 
@@ -20,28 +20,28 @@ var Sandwich = React.createClass({
     },
 
     addIngredient: function(e) {
-        console.log("ingredient: " + this.state.ingredient);
-        console.log("time: " + this.state.time);
+        // console.log("ingredient: " + this.state.ingredient);
+        // console.log("time: " + this.state.time);
         this.setState({
             items: this.state.items.concat([this.state.ingredient]),
             ingredient: '',
             timestamp: this.state.timestamp.concat([this.state.time]),
             time: ''
         });
-        // console.log(this.state.timestamp);
-        e.preventDefault();
+        // console.log(this.state.timestamp)
         React.findDOMNode(this.refs.input).focus();
+        e.preventDefault();
     },
 
     addCondiment: function(e) {
+        // to get this working: addCondiment needs to set ingredient & time states as onChange() does,
+        // BUT ingredient = the BUTTON value rather than the input box
+        // so the code can be the same as addIngredient, only the onChange portion has to be different & included in the
+        // addCondiment method.
         // the value of a CONDIMENT is whatever string it's been given in HTML below.
         var condiment = e.target.value;
         this.setState({
             i : this.i++,
-            // attempt at fixing issue where multiple ingredients with identical names mean the script always chooses the index
-            // of the first instance of that ingredient in the items array for deletion, eg Bread, Ham, Bread, 3rd bread X clicked
-            // removes FIRST bread from the list. Not perfect as i shouldn't be displayed in list + continues incrementing regardless
-            // of array item deletion.
             items: this.state.items.concat([condiment + " " + this.i]),
             timestamp: this.state.timestamp.concat([String(Math.round(+new Date() + 1/1000))]),
             ingredient: ''
@@ -51,34 +51,12 @@ var Sandwich = React.createClass({
 
     removeIngredient: function(e) {
         var ingredientIndex = e.target.value;
-        console.log(ingredientIndex);
+        // console.log(ingredientIndex);
         this.setState(state => {
             state.items.splice(ingredientIndex, 1);
             return {items: state.items};
         });
     },
-
-    // this doesn't work
-    // removeIngredient: function(e) {
-    //     // var ingredientIndex = e.target.value;
-    //     // looking for the index of the TIMESTAMP to remove the ing from the ITEMS list
-    //     console.log(e.target.key);
-    //     var ingredientTimestampIndex = this.state.timestamp.indexOf(e.target.key);
-    //     this.setState(state => {
-    //         state.items.splice(ingredientTimestampIndex, 1);
-    //         // also edit the timestamp list
-    //         state.timestamp.splice(ingredientTimestampIndex, 1);
-    //         return {items: state.items};
-    //     });
-    // },
-    // removeIngredient: function(e) {
-    //     // update state of itemsWithTimestamp where key = time and value = ingredient
-    //     // each div item has key = time
-    //     this.setState(state => {
-    //
-    //         return {items: state.items};
-    //     });
-    // },
 
     render: function () {
         return (
@@ -98,7 +76,7 @@ var Sandwich = React.createClass({
                 {/*<button onClick={this.addCondiment} value={"Mustard"} id={"mustard"}>Add Mustard</button>*/}
                 {/*<button onClick={this.addCondiment} value={"Mayo"} id={"mayo"}>Add Mayo</button>*/}
 
-                <Ingredients items={this.state.items} removeIngredient={this.removeIngredient}/>
+                <Ingredients items={this.state.items} timestamp={this.state.time} removeIngredient={this.removeIngredient}/>
 
             </div>
 
