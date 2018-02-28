@@ -8,7 +8,7 @@ var Sandwich = React.createClass({
             timestamp: [],
             time: '',
             ingredient: '',
-            // itemsWithTimestamp: {}
+            itemsWithTimestamp: {},
         };
     },
 
@@ -20,19 +20,29 @@ var Sandwich = React.createClass({
     },
 
     addIngredient: function(e) {
-        // console.log("ingredient: " + this.state.ingredient);
-        // console.log("time: " + this.state.time);
+        console.log("ingredient: " + this.state.ingredient);
+        console.log("time: " + this.state.time);
         this.setState({
             items: this.state.items.concat([this.state.ingredient]),
             ingredient: '',
             timestamp: this.state.timestamp.concat([this.state.time]),
-            time: ''
+            time: '',
         });
+        // this.itemsWithTimestamp[this.state.ingredient] = this.state.time;
         // console.log(this.state.timestamp)
         React.findDOMNode(this.refs.input).focus();
         e.preventDefault();
         // console.log(this.state.timestamp);
         // console.log(this.state.items);
+        this.updateDict();
+    },
+
+    updateDict: function(e) {
+        var keyPairs = new Map();
+        for (i in this.state.items) {
+        keyPairs.set(i, this.state.timestamp[i]);
+        }
+        console.log(keyPairs);
     },
 
     addCondiment: function(e) {
@@ -53,11 +63,13 @@ var Sandwich = React.createClass({
 
     removeIngredient: function(e) {
         var elementIndex = e.target.value;
-        console.log(elementIndex);
-        this.setState(state => {
-            state.items.splice(elementIndex, 1);
-            return {items: state.items};
-        });
+        var items = this.state.items;
+		delete items[elementIndex];
+		this.setState({ items });
+        // this.setState(state => {
+        //     state.items.splice(elementIndex, 1);
+        //     return {items: state.items};
+        // });
     },
 
     render: function () {
