@@ -9,9 +9,15 @@ const Ingredients = React.createClass({
     },
 
     render: function() {
-        var displayIngredient = (ingredient, time) =>
-        <div id ={"ing"} style={this.divColours}><li>{ingredient}
-        <button onClick= {this.props.removeIngredient} value={this.props.timestamp.indexOf(time)} id ={"del"}>X</button>
+        // var displayIngredient = (ingredient, time) =>
+        var displayIngredient = (ingredient) =>
+        <div id ={"ing"} style={this.divColours}><li>
+        {ingredient}
+        {/*{time}*/}
+        {/*<button onClick= {this.props.removeIngredient} value= {this.props.timestamp.indexOf(this.time)} id ={"del"}>X</button>*/}
+
+        {/*THIS IS THE LINE THAT "WORKS"*/}
+        <button onClick= {this.props.removeIngredient} value={this.props.items.indexOf(ingredient)} id ={"del"}>X</button>
         </li></div>;
 
         return (

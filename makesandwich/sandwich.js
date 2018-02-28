@@ -31,6 +31,8 @@ var Sandwich = React.createClass({
         // console.log(this.state.timestamp)
         React.findDOMNode(this.refs.input).focus();
         e.preventDefault();
+        // console.log(this.state.timestamp);
+        // console.log(this.state.items);
     },
 
     addCondiment: function(e) {
@@ -50,10 +52,10 @@ var Sandwich = React.createClass({
     },
 
     removeIngredient: function(e) {
-        var ingredientIndex = e.target.value;
-        // console.log(ingredientIndex);
+        var elementIndex = e.target.value;
+        console.log(elementIndex);
         this.setState(state => {
-            state.items.splice(ingredientIndex, 1);
+            state.items.splice(elementIndex, 1);
             return {items: state.items};
         });
     },
@@ -76,7 +78,7 @@ var Sandwich = React.createClass({
                 {/*<button onClick={this.addCondiment} value={"Mustard"} id={"mustard"}>Add Mustard</button>*/}
                 {/*<button onClick={this.addCondiment} value={"Mayo"} id={"mayo"}>Add Mayo</button>*/}
 
-                <Ingredients items={this.state.items} timestamp={this.state.time} removeIngredient={this.removeIngredient}/>
+                <Ingredients items={this.state.items} timestamp={this.state.timestamp} removeIngredient={this.removeIngredient}/>
 
             </div>
 
