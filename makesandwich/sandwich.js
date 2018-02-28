@@ -63,7 +63,6 @@ var Sandwich = React.createClass({
             <div>
                 <h1> My Sandwich</h1>
 
-                <Ingredients items={this.state.items} removeIngredient={this.removeIngredient}/>
              <form onSubmit={this.addIngredient}>
                     <input ref="input" onChange={this.onChange} value={this.state.ingredient}/>
                     <button>Add Ingredient</button>
@@ -76,6 +75,8 @@ var Sandwich = React.createClass({
                 <button onClick={this.addCondiment} value={"Ketchup"} id={"ketchup"}>Add Ketchup</button>
                 <button onClick={this.addCondiment} value={"Mustard"} id={"mustard"}>Add Mustard</button>
                 <button onClick={this.addCondiment} value={"Mayo"} id={"mayo"}>Add Mayo</button>
+
+                <Ingredients items={this.state.items} removeIngredient={this.removeIngredient}/>
 
             </div>
 
