@@ -36,15 +36,11 @@ var Sandwich = React.createClass({
     },
 
     addCondiment: function(e) {
-        // to get this working: addCondiment needs to set ingredient & time states as onChange() does,
-        // BUT ingredient = the BUTTON value rather than the input box
-        // so the code can be the same as addIngredient, only the onChange portion has to be different & included in the
-        // addCondiment method.
-        // the value of a CONDIMENT is whatever string it's been given in HTML below.
         var condiment = e.target.value;
         this.setState({
             i : this.i++,
-            items: this.state.items.concat([condiment + " " + this.i]),
+            //
+            items: this.state.items.concat([condiment]),
             timestamp: this.state.timestamp.concat([String(Math.round(+new Date() + 1/1000))]),
             ingredient: ''
         });
@@ -66,6 +62,7 @@ var Sandwich = React.createClass({
     render: function () {
         return (
             <div>
+
                 <h1> My Sandwich</h1>
 
              <form onSubmit={this.addIngredient}>
@@ -75,14 +72,16 @@ var Sandwich = React.createClass({
 
                 <br></br>
 
-                {/*<button onClick={this.addCondiment} value={"Bread"} id={"bread"}>Add Bread</button>*/}
-                {/*<button onClick={this.addCondiment} value={"Lettuce"} id={"lettuce"}>Add Lettuce</button>*/}
-                {/*<button onClick={this.addCondiment} value={"Ketchup"} id={"ketchup"}>Add Ketchup</button>*/}
-                {/*<button onClick={this.addCondiment} value={"Mustard"} id={"mustard"}>Add Mustard</button>*/}
-                {/*<button onClick={this.addCondiment} value={"Mayo"} id={"mayo"}>Add Mayo</button>*/}
+                <button onClick={this.addCondiment} value={"Bread"} id={"bread"}>Add Bread</button>
+                <button onClick={this.addCondiment} value={"Lettuce"} id={"lettuce"}>Add Lettuce</button>
+                <button onClick={this.addCondiment} value={"Ketchup"} id={"ketchup"}>Add Ketchup</button>
+                <button onClick={this.addCondiment} value={"Mustard"} id={"mustard"}>Add Mustard</button>
+                <button onClick={this.addCondiment} value={"Mayo"} id={"mayo"}>Add Mayo</button>
 
-                <Ingredients items={this.state.items} timestamp={this.state.timestamp} removeIngredient={this.removeIngredient}/>
-                <DeleteButton items={this.state.items} timestamp={this.state.timestamp} removeIngredient={this.removeIngredient}/>
+                <div id="row">
+                  <div id="column"><Ingredients items={this.state.items} timestamp={this.state.timestamp} removeIngredient={this.removeIngredient}/></div>
+                  <div id="column"><DeleteButton items={this.state.items} timestamp={this.state.timestamp} removeIngredient={this.removeIngredient}/></div>
+                </div>
 
             </div>
 

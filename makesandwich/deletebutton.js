@@ -3,13 +3,14 @@ const DeleteButton = React.createClass({
     render: function() {
 
         var deleteButton = (timestamp) =>
-            <button onClick= {this.props.removeIngredient} value= {this.props.timestamp.indexOf(timestamp)} id ={"del"}>X</button>;
-
+            <div>
+            <button onClick= {this.props.removeIngredient} value= {this.props.timestamp.indexOf(timestamp)} id ={"del"}>X</button>
+            </div>;
 
         return (
-        <div>
+            <ul id={"deleteButton"}>
             {this.props.timestamp.map(deleteButton)}
-        </div>
+            </ul>
          );
     }
 

@@ -8,20 +8,13 @@ const Ingredients = React.createClass({
 
     render: function() {
         var displayIngredient = (ingredient) =>
-        // var displayIngredient = (ingredient) =>
         <div id ={"ing"} style={this.divColours}><li>
         {ingredient}
-        {/*<DeleteButton items={this.props.items} timestamp={this.props.timestamp} removeIngredient={this.removeIngredient}/>*/}
         </li></div>;
-
-        // var deleteButton = (timestamp) =>
-        //     <button onClick= {this.props.removeIngredient} value= {this.props.timestamp.indexOf(timestamp)} id ={"del"}>X</button>;
-
 
         return (
         <ul>
             {this.props.items.map(displayIngredient)}
-            {/*{this.props.timestamp.map(deleteButton)}*/}
         </ul>
          );
     }
