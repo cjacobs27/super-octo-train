@@ -82,7 +82,7 @@ var Sandwich = React.createClass({
                 {/*<button onClick={this.addCondiment} value={"Mayo"} id={"mayo"}>Add Mayo</button>*/}
 
                 <Ingredients items={this.state.items} timestamp={this.state.timestamp} removeIngredient={this.removeIngredient}/>
-                {/*<Ingredients items={this.state.items} removeIngredient={this.removeIngredient}/>*/}
+                <DeleteButton items={this.state.items} timestamp={this.state.timestamp} removeIngredient={this.removeIngredient}/>
 
             </div>
 
