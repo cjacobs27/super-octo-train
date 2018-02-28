@@ -1,5 +1,3 @@
-var keyPairs = new Map();
-
 var Sandwich = React.createClass({
 
     i : 0,
@@ -10,7 +8,6 @@ var Sandwich = React.createClass({
             timestamp: [],
             time: '',
             ingredient: '',
-            itemsWithTimestamp: keyPairs,
         };
     },
 
@@ -22,8 +19,8 @@ var Sandwich = React.createClass({
     },
 
     addIngredient: function(e) {
-        console.log("ingredient: " + this.state.ingredient);
-        console.log("time: " + this.state.time);
+        // console.log("ingredient: " + this.state.ingredient);
+        // console.log("time: " + this.state.time);
         this.setState({
             items: this.state.items.concat([this.state.ingredient]),
             ingredient: '',
@@ -36,19 +33,6 @@ var Sandwich = React.createClass({
         e.preventDefault();
         // console.log(this.state.timestamp);
         // console.log(this.state.items);
-        this.updateDict();
-    },
-
-    updateDict: function(e) {
-        // var keyPairs = new Map();
-        for (i in this.state.items) {
-            // timestamp => ingredient
-        keyPairs.set(this.state.timestamp[i], this.state.items[i]);
-        }
-        this.setState({
-            itemsWithTimestamp: keyPairs
-        });
-        console.log(this.state.itemsWithTimestamp);
     },
 
     addCondiment: function(e) {
@@ -68,15 +52,11 @@ var Sandwich = React.createClass({
     },
 
     removeIngredient: function(e) {
-        console.log(e.target.value)
-
-        // NOW GET (like a GETTER) the VALUE from keyPairs and DELETE IT FROM BOTH ITEMS AND KEY PAIRS
-        //YOU MAY NEED TO GET THE INDEX FIRST
-        
-        // var elementIndex = e.target.value;
-        // var items = this.state.items;
-		// delete items[elementIndex];
-		// this.setState({ items });
+        var elementIndex = e.target.value
+        // keyPairs.get(ingredient);
+        var items = this.state.items;
+		delete items[elementIndex];
+		this.setState({ items });
     },
 
     render: function () {
@@ -97,7 +77,8 @@ var Sandwich = React.createClass({
                 {/*<button onClick={this.addCondiment} value={"Mustard"} id={"mustard"}>Add Mustard</button>*/}
                 {/*<button onClick={this.addCondiment} value={"Mayo"} id={"mayo"}>Add Mayo</button>*/}
 
-                <Ingredients items={this.state.items} timestamp={this.state.timestamp} removeIngredient={this.removeIngredient}/>
+                <Ingredients items={this.state.items} timestamp={this.state.timestamp} itemsWithTimestamp={this.state.itemsWithTimestamp} removeIngredient={this.removeIngredient}/>
+                {/*<Ingredients itemsWithTimestamp={this.state.itemsWithTimestamp} removeIngredient={this.removeIngredient}/>*/}
 
             </div>
 
