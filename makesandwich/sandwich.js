@@ -1,3 +1,5 @@
+var keyPairs = new Map();
+
 var Sandwich = React.createClass({
 
     i : 0,
@@ -8,7 +10,7 @@ var Sandwich = React.createClass({
             timestamp: [],
             time: '',
             ingredient: '',
-            itemsWithTimestamp: {},
+            itemsWithTimestamp: keyPairs,
         };
     },
 
@@ -38,11 +40,15 @@ var Sandwich = React.createClass({
     },
 
     updateDict: function(e) {
-        var keyPairs = new Map();
+        // var keyPairs = new Map();
         for (i in this.state.items) {
-        keyPairs.set(i, this.state.timestamp[i]);
+            // timestamp => ingredient
+        keyPairs.set(this.state.timestamp[i], this.state.items[i]);
         }
-        console.log(keyPairs);
+        this.setState({
+            itemsWithTimestamp: keyPairs
+        });
+        console.log(this.state.itemsWithTimestamp);
     },
 
     addCondiment: function(e) {
@@ -62,14 +68,15 @@ var Sandwich = React.createClass({
     },
 
     removeIngredient: function(e) {
-        var elementIndex = e.target.value;
-        var items = this.state.items;
-		delete items[elementIndex];
-		this.setState({ items });
-        // this.setState(state => {
-        //     state.items.splice(elementIndex, 1);
-        //     return {items: state.items};
-        // });
+        console.log(e.target.value)
+
+        // NOW GET (like a GETTER) the VALUE from keyPairs and DELETE IT FROM BOTH ITEMS AND KEY PAIRS
+        //YOU MAY NEED TO GET THE INDEX FIRST
+        
+        // var elementIndex = e.target.value;
+        // var items = this.state.items;
+		// delete items[elementIndex];
+		// this.setState({ items });
     },
 
     render: function () {
