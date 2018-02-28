@@ -11,7 +11,8 @@ const Ingredients = React.createClass({
     render: function() {
         var displayIngredient = (ingredient) =>
         <div id ={"ing"} style={this.divColours}><li>{ingredient}
-        <button onClick= {this.props.removeIngredient} key= {this.props.timestamp} value={this.props.items.indexOf(ingredient)} id ={"del"}>X</button>
+        {/*<button onClick= {this.props.removeIngredient} key= {this.props.timestamp.indexOf(time)} value={this.props.items.indexOf(ingredient)} id ={"del"}>X</button>*/}
+        <button onClick= {this.props.removeIngredient} value={this.props.items.indexOf(ingredient)} id ={"del"}>X</button>
         </li></div>;
 
         return (
