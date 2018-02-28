@@ -52,11 +52,15 @@ var Sandwich = React.createClass({
     },
 
     removeIngredient: function(e) {
-        var elementIndex = e.target.value
-        // keyPairs.get(ingredient);
+        // from TIMESTAMP
+        var elementIndex = e.target.value;
+        console.log(this.state.items[elementIndex],this.state.timestamp[elementIndex]);
         var items = this.state.items;
-		delete items[elementIndex];
-		this.setState({ items });
+        var timestamp = this.state.timestamp;
+        delete items[elementIndex];
+        delete timestamp[elementIndex];
+        this.setState({ items });
+        this.setState({ timestamp });
     },
 
     render: function () {
@@ -77,8 +81,8 @@ var Sandwich = React.createClass({
                 {/*<button onClick={this.addCondiment} value={"Mustard"} id={"mustard"}>Add Mustard</button>*/}
                 {/*<button onClick={this.addCondiment} value={"Mayo"} id={"mayo"}>Add Mayo</button>*/}
 
-                <Ingredients items={this.state.items} timestamp={this.state.timestamp} itemsWithTimestamp={this.state.itemsWithTimestamp} removeIngredient={this.removeIngredient}/>
-                {/*<Ingredients itemsWithTimestamp={this.state.itemsWithTimestamp} removeIngredient={this.removeIngredient}/>*/}
+                <Ingredients items={this.state.items} timestamp={this.state.timestamp} removeIngredient={this.removeIngredient}/>
+                {/*<Ingredients items={this.state.items} removeIngredient={this.removeIngredient}/>*/}
 
             </div>
 
