@@ -5,19 +5,24 @@ var Sandwich = React.createClass({
     getInitialState: function() {
         return {
             items: [],
-            ingredient: ''
+            ingredient: '',
+            timestamp: ["1234567890"]
         };
     },
 
     onChange: function(e) {
-        this.setState({ingredient: e.target.value});
+        this.setState({
+            ingredient: e.target.value,
+        });
     },
 
     addIngredient: function(e) {
         this.setState({
             items: this.state.items.concat([this.state.ingredient]),
-            ingredient: ''
+            ingredient: '',
+            timestamp: this.state.timestamp.concat([String(Math.round(+new Date() + 1/1000))]),
         });
+        console.log(this.state.timestamp);
         e.preventDefault();
 
     },
@@ -31,32 +36,21 @@ var Sandwich = React.createClass({
             // removes FIRST bread from the list. Not perfect as i shouldn't be displayed in list + continues incrementing regardless
             // of array item deletion.
             items: this.state.items.concat([condiment + " " + this.i]),
-            // items: this.state.items.concat([condiment]),
+            timestamp: this.state.timestamp.concat([String(Math.round(+new Date() + 1/1000))]),
             ingredient: ''
         });
+        console.log(this.state.timestamp);
         React.findDOMNode(this.refs.input).focus();
     },
 
     removeIngredient: function(e) {
         var ingredientIndex = e.target.value;
-        console.log(ingredientIndex);
+        console.log(this.state.timestamp);
         this.setState(state => {
             state.items.splice(ingredientIndex, 1);
             return {items: state.items};
         });
     },
-
-    // getColours: function(e) {
-    //     this.colors = ['#ff0000', '#00ff00', '#0000ff'];
-    //     this.random_color = this.colors[Math.floor(Math.random() * this.colors.length)];
-    //     return this.random_color;
-    // },
-
-    // divColours: function(e) {
-    //     // this.document.getElementById('#ing').style.color = random_color;
-    //     color: this.getColors(),
-    //     border: "2px solid #000000",
-    // },
 
     render: function () {
         return (
