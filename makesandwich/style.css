@@ -84,7 +84,7 @@ button:hover {
     background-color: #00aaff;
     border: 2px solid #000000;
     animation-name: moveInLeft;
-    animation-duration: 2s;
+    animation-duration: 1s;
 }
 
 @keyframes moveInLeft {
