@@ -16,5 +16,4 @@ const DeleteButton = React.createClass({
 
 });
 
-
 React.render(<Sandwich />, document.body);
