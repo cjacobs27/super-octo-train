@@ -19,27 +19,20 @@ var Sandwich = React.createClass({
     },
 
     addIngredient: function(e) {
-        // console.log("ingredient: " + this.state.ingredient);
-        // console.log("time: " + this.state.time);
         this.setState({
             items: this.state.items.concat([this.state.ingredient]),
             ingredient: '',
             timestamp: this.state.timestamp.concat([this.state.time]),
             time: '',
         });
-        // this.itemsWithTimestamp[this.state.ingredient] = this.state.time;
-        // console.log(this.state.timestamp)
         React.findDOMNode(this.refs.input).focus();
         e.preventDefault();
-        // console.log(this.state.timestamp);
-        // console.log(this.state.items);
     },
 
     addCondiment: function(e) {
         var condiment = e.target.value;
         this.setState({
             i : this.i++,
-            //
             items: this.state.items.concat([condiment]),
             timestamp: this.state.timestamp.concat([String(Math.round(+new Date() + 1/1000))]),
             ingredient: ''
