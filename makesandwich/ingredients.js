@@ -1,16 +1,25 @@
 const Ingredients = React.createClass({
 
+    setColours :   function(e) {
+            document.getElementById('ing').style.backgroundColor = '#'+Math.floor(Math.random() * 16777215).toString(16);
+        // return document.e.style.backgroundColor = '#'+Math.floor(Math.random() * 16777215).toString(16);
+
+    },
+
     divColours : {
-        colors : ['#ff0000', '#00ff00', '#0000ff'],
-        backgroundColor: '#'+Math.floor(Math.random()*16777215).toString(16),
+        // generate a random hex colour - all <li> are same random colour
+        // backgroundColor: '#'+Math.floor(Math.random()*16777215).toString(16),
+        //  backgroundColor: this.getColour,
         border: "2px solid #000000",
     },
 
     render: function() {
         var displayIngredient = (ingredient) =>
-        <div id ={"ing"} style={this.divColours}><li>
+        <div id ={"ing"} style={this.divColours} onMouseOver= {this.setColours} >
+            <li>
         {ingredient}
-        </li></div>;
+        </li>
+        </div>;
 
         return (
         <ul>
