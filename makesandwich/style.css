@@ -37,7 +37,33 @@ button {
 }
 
 button:hover {
+    transform: translateY(-3px);
     border: 2px solid #000000;
+}
+
+button:active {
+    transform: translateY(-1px);
+}
+
+#del {
+    /*float: left;*/
+    transform: none;
+    -webkit-transition-duration: 0.2s;
+    color: #5500FF;
+    font-weight: bold;
+    /*font-size: xx-small;*/
+    background-color: transparent;
+    border: 1px solid #5500FF;
+    border-radius: 100%;
+}
+
+#del:hover {
+    transform: none;
+    color: whitesmoke;
+    font-weight: bold;
+    /*font-size: x-small;*/
+    background-color: transparent;
+    border: 1px solid whitesmoke;
 }
 
 #mustard {
@@ -60,29 +86,10 @@ button:hover {
     background-color: #C9AE99;
 }
 
-#del {
-    /*float: left;*/
-    -webkit-transition-duration: 0.4s;
-    color: black;
-    font-weight: bold;
-    /*font-size: xx-small;*/
-    background-color: transparent;
-    border: 2px solid #FFFFFF;
-}
-
-#del:hover {
-    color: black;
-    font-weight: bold;
-    font-size: x-small;
-    background-color: transparent;
-    border: 2px solid #000000;
-    border-radius: 50%;
-}
-
-
 #ing {
     background-color: #00aaff;
-    border: 2px solid #000000;
+    border: 2px solid transparent;
+    border-radius: 100px;
     animation-name: moveInLeft;
     animation-duration: 1s;
 }
