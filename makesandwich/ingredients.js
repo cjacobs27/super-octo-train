@@ -4,22 +4,23 @@ const Ingredients = React.createClass({
             var elementsList = document.getElementsByClassName('ingList');
             for (let i = 0; i < elementsList.length; i++) {
                 // elementsList[i].style.backgroundColor = '#'+Math.floor(Math.random() * 16777215).toString(16);
-                switch(elementsList[i].innerText) {
-                    case "Bread":
+                var elementText = elementsList[i].innerText;
+                switch(elementText.toUpperCase()) {
+                    case "BREAD":
                         elementsList[i].style.backgroundColor = "#b08568";
                          elementsList[i].style.height = "45px";
                          elementsList[i].style.lineHeight = "45px";
                         break;
-                    case "Lettuce":
+                    case "LETTUCE":
                         elementsList[i].style.backgroundColor = "#90EE90";
                         break;
-                    case "Ketchup":
+                    case "KETCHUP":
                         elementsList[i].style.backgroundColor = "#E31100";
                         break;
-                    case "Mustard":
+                    case "MUSTARD":
                         elementsList[i].style.backgroundColor = "#ffd500";
                         break;
-                    case "Mayo":
+                    case "MAYO":
                         elementsList[i].style.backgroundColor = "whitesmoke";
                         break;
                     default:
