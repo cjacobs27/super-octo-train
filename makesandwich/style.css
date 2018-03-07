@@ -58,7 +58,7 @@ button:active {
 #del {
     transform: none;
     margin-right: 800px;
-    margin-top: 2px;
+    margin-top: 5px;
     margin-bottom: 2px;
     -webkit-transition-duration: 0.2s;
     color: #5500FF;
@@ -99,6 +99,7 @@ button:active {
 }
 
 .ingList {
+    text-transform: uppercase;
     background-color: #00aaff;
     border: 2px solid transparent;
     border-radius: 100px;
