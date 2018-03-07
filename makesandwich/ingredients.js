@@ -3,7 +3,6 @@ const Ingredients = React.createClass({
     setColours :   function(e) {
             var elementsList = document.getElementsByClassName('ingList');
             for (let i = 0; i < elementsList.length; i++) {
-                // elementsList[i].style.backgroundColor = '#'+Math.floor(Math.random() * 16777215).toString(16);
                 var elementText = elementsList[i].innerText;
                 switch(elementText.toUpperCase()) {
                     case "BREAD":
@@ -24,15 +23,18 @@ const Ingredients = React.createClass({
                         elementsList[i].style.backgroundColor = "whitesmoke";
                         break;
                     default:
-                        // randomising the unrecognised colours
-                        elementsList[i].style.backgroundColor = '#'+Math.floor(Math.random() * 16777215).toString(16);
+                        function setRandomColour (e) {
+                            e.target.style.backgroundColor = '#'+Math.floor(Math.random() * 16777215).toString(16);
+                        }
+                        // this ensures that only the moused-over ingredient changes
+                        e.target.addEventListener("onmouseenter", setRandomColour(e, i));
                 }
             }
             },
 
     render: function() {
         var displayIngredient = (ingredient) =>
-        <div id ={ingredient} className={'ingList'} onMouseOver={this.setColours}>
+        <div id ={ingredient} className={'ingList'} onMouseEnter={this.setColours}>
             <li>
         {ingredient}
         </li>
