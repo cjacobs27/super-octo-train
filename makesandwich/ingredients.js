@@ -7,9 +7,12 @@ const Ingredients = React.createClass({
                 switch(elementsList[i].innerText) {
                     case "Bread":
                         elementsList[i].style.backgroundColor = "#b08568";
+                         elementsList[i].style.height = "45px";
+                         elementsList[i].style.lineHeight = "45px";
                         break;
                     case "Lettuce":
                         elementsList[i].style.backgroundColor = "#90EE90";
+                        break;
                     case "Ketchup":
                         elementsList[i].style.backgroundColor = "#E31100";
                         break;
@@ -24,8 +27,6 @@ const Ingredients = React.createClass({
                         elementsList[i].style.backgroundColor = '#'+Math.floor(Math.random() * 16777215).toString(16);
                 }
             }
-
-        // switch statement to set specific colours if value is specific thing ie condiment name?
             },
 
     render: function() {

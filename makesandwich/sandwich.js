@@ -56,10 +56,10 @@ var Sandwich = React.createClass({
         return (
             <div>
 
-                <h1> My Sandwich</h1>
+                <h1> Make a Sandwich</h1>
 
              <form onSubmit={this.addIngredient}>
-                    <input ref="input" onChange={this.onChange} key= {this.state.timestamp} value={this.state.ingredient}/>
+                    <input placeholder="What do you want in your sandwich?" ref="input" onChange={this.onChange} key= {this.state.timestamp} value={this.state.ingredient}/>
                     <button>Add Ingredient</button>
                 </form>
 
