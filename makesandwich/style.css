@@ -86,7 +86,7 @@ button:active {
     background-color: #C9AE99;
 }
 
-#ing {
+.ingList {
     background-color: #00aaff;
     border: 2px solid transparent;
     border-radius: 100px;
