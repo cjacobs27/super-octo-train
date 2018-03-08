@@ -75,6 +75,7 @@ var Sandwich = React.createClass({
                   <div id="column"><Ingredients items={this.state.items} timestamp={this.state.timestamp} removeIngredient={this.removeIngredient}/></div>
                   <div id="column"><DeleteButton items={this.state.items} timestamp={this.state.timestamp} removeIngredient={this.removeIngredient}/></div>
                 </div>
+                <div id="plate"></div>
 
             </div>
 
