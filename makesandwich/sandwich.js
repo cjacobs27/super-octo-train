@@ -72,7 +72,8 @@ var Sandwich = React.createClass({
                 <button onClick={this.addCondiment} value={"Mayo"} id={"mayo"}>Add Mayo</button>
 
                 <div id="row">
-                    <div id="column"><div id={"plate"}><Ingredients items={this.state.items} timestamp={this.state.timestamp} removeIngredient={this.removeIngredient}/></div></div>
+                    <div id="column"><Ingredients items={this.state.items} timestamp={this.state.timestamp} removeIngredient={this.removeIngredient}/>
+                        <img src = "plate.png" id={"plate"}></img></div>
                   <div id="column"><DeleteButton items={this.state.items} timestamp={this.state.timestamp} removeIngredient={this.removeIngredient}/></div>
                 </div>
                 {/*<div id="plate"></div>*/}
