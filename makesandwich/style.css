@@ -110,12 +110,10 @@ button:active {
 }
 
 #plate {
-    background-image: linear-gradient(to bottom, rgba(103, 103, 103, 0.52), rgba(255, 255, 255, 0.46)), url("plate.jpg");
     border-radius: 50%;
-    margin-left: 250px;
-    margin-bottom: 300px;
-    width: 586px;
-    height: 321px;
+    margin-left: 50px;
+    width: 900px;
+    height: 400px;
 }
 
 @keyframes moveInLeft {
