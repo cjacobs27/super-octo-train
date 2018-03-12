@@ -1,6 +1,6 @@
 body {
     background-color: #00aaff;
-    font-family: "Calibri";
+    font-family: "Calibri", sans-serif;
     margin-left: 20px;
 }
 
@@ -36,14 +36,14 @@ li {
     list-style-type: none;
     display: inline-block;
     color: #000000;
-    /*background-color: transparent;*/
 }
 
 button {
     -webkit-transition-duration: 0.4s;
+    color: whitesmoke;
     border-color: transparent;
     border-radius: 12px;
-    background-color: #00ff55;
+    background-color: #7c00ff;
 }
 
 button:hover {
@@ -62,10 +62,10 @@ button:active {
     margin-top: 5px;
     margin-bottom: 2px;
     -webkit-transition-duration: 0.2s;
-    color: #5500FF;
+    color: #7c00ff;
     font-weight: bold;
     background-color: transparent;
-    border: 1px solid #5500FF;
+    border: 1px solid #7c00ff;
     border-radius: 100%;
     animation-name: moveInRight;
     animation-duration: 1s;
@@ -80,26 +80,32 @@ button:active {
 }
 
 #bread {
+    color: #000740;
     background-color: #b08568;
 }
 
 #lettuce {
+    color: #000740;
     background-color: #90EE90;
 }
 
 #ketchup {
+    color: #000740;
     background-color: #E31100;
 }
 
 #mustard {
+    color: #000740;
     background-color: #ffd500;
 }
 
 #mayo {
+    color: #000740;
     background-color: whitesmoke;
 }
 
 .ingList {
+    position: relative;
     text-transform: uppercase;
     background-color: #00aaff;
     border: 2px solid transparent;
@@ -110,10 +116,9 @@ button:active {
 }
 
 #plate {
-    border-radius: 50%;
-    margin-left: 50px;
-    width: 900px;
-    height: 400px;
+    margin-left: 5px;
+    width: 966px;
+    height: 250px;
 }
 
 @keyframes moveInLeft {
@@ -145,5 +150,9 @@ button:active {
 }
 
 h1 {
-    color: #5500ff;
+    color: #7c00ff;
+}
+
+h3 {
+    color: #7c00ff;
 }

@@ -70,13 +70,13 @@ var Sandwich = React.createClass({
                 <button onClick={this.addCondiment} value={"Ketchup"} id={"ketchup"}>Add Ketchup</button>
                 <button onClick={this.addCondiment} value={"Mustard"} id={"mustard"}>Add Mustard</button>
                 <button onClick={this.addCondiment} value={"Mayo"} id={"mayo"}>Add Mayo</button>
+                <h3> Touch the sandwich ingredients to colour them in! </h3>
 
                 <div id="row">
                     <div id="column"><Ingredients items={this.state.items} timestamp={this.state.timestamp} removeIngredient={this.removeIngredient}/>
-                        <img src = "plate.png" id={"plate"}></img></div>
+                        <img src = "plate.png" id={"plate"} alt="sandwich plate"></img></div>
                   <div id="column"><DeleteButton items={this.state.items} timestamp={this.state.timestamp} removeIngredient={this.removeIngredient}/></div>
                 </div>
-                {/*<div id="plate"></div>*/}
 
             </div>
 
