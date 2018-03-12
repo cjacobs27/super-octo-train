@@ -1,24 +1,27 @@
-var Sandwich = React.createClass({
+import React, { Component } from 'react';
+import Ingredients from './ingredients';
+import DeleteButton from './deletebutton';
 
-    i: 0,
+class Sandwich extends Component {
+    constructor(props) {
+        super(props);
 
-    getInitialState: function () {
-        return {
+        this.state = {
             items: [],
             timestamp: [],
             time: '',
             ingredient: '',
-        };
-    },
+        }
+    }
 
-    onChange: function (e) {
+    onChange(e) {
         this.setState({
             ingredient: e.target.value,
             time: String(Math.round(+new Date() + 1 / 1000)),
         });
-    },
+    }
 
-    addIngredient: function (e) {
+    addIngredient(e) {
         this.setState({
             items: this.state.items.concat([this.state.ingredient]),
             ingredient: '',
@@ -27,34 +30,32 @@ var Sandwich = React.createClass({
         });
         React.findDOMNode(this.refs.input).focus();
         e.preventDefault();
-    },
+    }
 
-    addCondiment: function (e) {
-        var condiment = e.target.value;
+    addCondiment(e) {
+        let condiment = e.target.value;
         this.setState({
-            i: this.i++,
             items: this.state.items.concat([condiment]),
             timestamp: this.state.timestamp.concat([String(Math.round(+new Date() + 1 / 1000))]),
             ingredient: ''
         });
         React.findDOMNode(this.refs.input).focus();
-    },
+    }
 
-    removeIngredient: function (e) {
-        // from TIMESTAMP
-        var elementIndex = e.target.value;
+    removeIngredient(e) {
+        let elementIndex = e.target.value;
         console.log(this.state.items[elementIndex], this.state.timestamp[elementIndex]);
-        var items = this.state.items;
-        var timestamp = this.state.timestamp;
+        let items = this.state.items;
+        let timestamp = this.state.timestamp;
         delete items[elementIndex];
         delete timestamp[elementIndex];
         this.setState({items});
         this.setState({timestamp});
-    },
+    }
 
-    render: function () {
+    render() {
         return (
-            <div>
+            <div className={"Sandwich"}>
 
                 <div id={"panel"}>
                 <h1> Make a Sandwich</h1>
@@ -78,7 +79,7 @@ var Sandwich = React.createClass({
                 <div id="row">
                     <div id="column"><Ingredients items={this.state.items} timestamp={this.state.timestamp}
                                                   removeIngredient={this.removeIngredient}/>
-                        <img src="plate.png" id={"plate"} alt="sandwich plate"></img></div>
+                        <img src="../plate.png" id={"plate"} alt="sandwich plate"></img></div>
                     <div id="column"><DeleteButton items={this.state.items} timestamp={this.state.timestamp}
                                                    removeIngredient={this.removeIngredient}/></div>
                 </div>
@@ -89,6 +90,8 @@ var Sandwich = React.createClass({
 
     }
 
-});
+}
 
 React.render(<Sandwich/>, document.body);
+
+export default Sandwich;

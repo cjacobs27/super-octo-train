@@ -1,6 +1,9 @@
-const DeleteButton = React.createClass({
+import React from 'react';
+import Sandwich from './sandwich';
 
-    render: function () {
+export default class DeleteButton extends React.Component {
+
+    render() {
 
         var deleteButton = (timestamp) =>
             <div>
@@ -16,6 +19,6 @@ const DeleteButton = React.createClass({
         );
     }
 
-});
+}
 
 React.render(<Sandwich/>, document.body);
