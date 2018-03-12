@@ -1,9 +1,7 @@
 body {
-    /*background-image: url("background.jpg");*/
     background-color: #008f95;
     font-family: "Calibri", sans-serif;
     margin-left: 20px;
-    background-repeat: repeat;
 }
 
 #column {
