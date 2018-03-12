@@ -1,8 +1,8 @@
 var Sandwich = React.createClass({
 
-    i : 0,
+    i: 0,
 
-    getInitialState: function() {
+    getInitialState: function () {
         return {
             items: [],
             timestamp: [],
@@ -11,14 +11,14 @@ var Sandwich = React.createClass({
         };
     },
 
-    onChange: function(e) {
+    onChange: function (e) {
         this.setState({
             ingredient: e.target.value,
-            time: String(Math.round(+new Date() + 1/1000)),
+            time: String(Math.round(+new Date() + 1 / 1000)),
         });
     },
 
-    addIngredient: function(e) {
+    addIngredient: function (e) {
         this.setState({
             items: this.state.items.concat([this.state.ingredient]),
             ingredient: '',
@@ -29,27 +29,27 @@ var Sandwich = React.createClass({
         e.preventDefault();
     },
 
-    addCondiment: function(e) {
+    addCondiment: function (e) {
         var condiment = e.target.value;
         this.setState({
-            i : this.i++,
+            i: this.i++,
             items: this.state.items.concat([condiment]),
-            timestamp: this.state.timestamp.concat([String(Math.round(+new Date() + 1/1000))]),
+            timestamp: this.state.timestamp.concat([String(Math.round(+new Date() + 1 / 1000))]),
             ingredient: ''
         });
         React.findDOMNode(this.refs.input).focus();
     },
 
-    removeIngredient: function(e) {
+    removeIngredient: function (e) {
         // from TIMESTAMP
         var elementIndex = e.target.value;
-        console.log(this.state.items[elementIndex],this.state.timestamp[elementIndex]);
+        console.log(this.state.items[elementIndex], this.state.timestamp[elementIndex]);
         var items = this.state.items;
         var timestamp = this.state.timestamp;
         delete items[elementIndex];
         delete timestamp[elementIndex];
-        this.setState({ items });
-        this.setState({ timestamp });
+        this.setState({items});
+        this.setState({timestamp});
     },
 
     render: function () {
@@ -58,8 +58,9 @@ var Sandwich = React.createClass({
 
                 <h1> Make a Sandwich</h1>
 
-             <form onSubmit={this.addIngredient}>
-                    <input placeholder="What do you want in your sandwich?" ref="input" onChange={this.onChange} key= {this.state.timestamp} value={this.state.ingredient}/>
+                <form onSubmit={this.addIngredient}>
+                    <input placeholder="What do you want in your sandwich?" ref="input" onChange={this.onChange}
+                           key={this.state.timestamp} value={this.state.ingredient}/>
                     <button>Add Ingredient</button>
                 </form>
 
@@ -73,9 +74,11 @@ var Sandwich = React.createClass({
                 <h3> Touch the sandwich ingredients to colour them in! </h3>
 
                 <div id="row">
-                    <div id="column"><Ingredients items={this.state.items} timestamp={this.state.timestamp} removeIngredient={this.removeIngredient}/>
-                        <img src = "plate.png" id={"plate"} alt="sandwich plate"></img></div>
-                  <div id="column"><DeleteButton items={this.state.items} timestamp={this.state.timestamp} removeIngredient={this.removeIngredient}/></div>
+                    <div id="column"><Ingredients items={this.state.items} timestamp={this.state.timestamp}
+                                                  removeIngredient={this.removeIngredient}/>
+                        <img src="plate.png" id={"plate"} alt="sandwich plate"></img></div>
+                    <div id="column"><DeleteButton items={this.state.items} timestamp={this.state.timestamp}
+                                                   removeIngredient={this.removeIngredient}/></div>
                 </div>
 
             </div>
@@ -86,4 +89,4 @@ var Sandwich = React.createClass({
 
 });
 
-React.render(<Sandwich />, document.body);
+React.render(<Sandwich/>, document.body);
