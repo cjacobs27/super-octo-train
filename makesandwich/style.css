@@ -19,7 +19,7 @@ body {
 #panel {
     margin-left: 225px;
     padding-left: 50px;
-    background: -webkit-linear-gradient(top, #99d3df 0%, #88bbd6 50%, #99d3df 100%);
+    background: -webkit-linear-gradient(top, #cdcdcd 0%, #e9e9e9 50%, #cdcdcd 100%);
     width: 500px;
     box-shadow: 0 5px 10px rgba(0,0,0,.2);
     border: 1px solid #E9E9E9;
@@ -30,8 +30,8 @@ input {
     width: 300px;
     text-align: center;
     margin-right: 25px;
-    border-radius: 8px;
-    border: none;
+    border: 1px solid #E9E9E9;
+    border-radius: 12px;
 }
 
 ul {
@@ -45,7 +45,7 @@ li {
     text-align: center;
     list-style-type: none;
     display: inline-block;
-    color: #000740;
+    color: rgba(0,0,0,.5);
 }
 
 button {
@@ -53,7 +53,7 @@ button {
     color: whitesmoke;
     border-color: transparent;
     border-radius: 12px;
-    background-color: #008f95;
+    background-color: #6ca7b3;
 }
 
 button:hover {
@@ -128,7 +128,7 @@ button:active {
     border-radius: 100px;
     animation-name: moveInLeft;
     animation-duration: 1s;
-    box-shadow: 0 30px 10px rgba(0,0,0,.4);
+    box-shadow: 0 35px 20px rgba(0,0,0,.4);
 }
 
 #plate {
@@ -167,11 +167,11 @@ button:active {
 
 h1 {
     margin-left: 100px;
-    color: #E9E9E9;
+    color: #6ca7b3;
 }
 
 h3 {
     margin-right: 75px;
     text-align: center;
-    color: #E9E9E9;
+    color: #6ca7b3;
 }
