@@ -79,27 +79,32 @@ button:active {
     border: 1px solid black;
 }
 
-#bread {
+#Bread {
+    border: 2px solid transparent;
     color: #000740;
     background-color: #b08568;
 }
 
-#lettuce {
+#Lettuce {
+    border: 2px solid transparent;
     color: #000740;
     background-color: #90EE90;
 }
 
-#ketchup {
+#Ketchup {
+    border: 2px solid transparent;
     color: #000740;
     background-color: #E31100;
 }
 
-#mustard {
+#Mustard {
+    border: 2px solid transparent;
     color: #000740;
     background-color: #ffd500;
 }
 
-#mayo {
+#Mayo {
+    border: 2px solid transparent;
     color: #000740;
     background-color: whitesmoke;
 }

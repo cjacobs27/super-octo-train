@@ -17,7 +17,6 @@ const Ingredients = React.createClass({
                     elementsList[i].style.backgroundColor = "#b08568";
                     elementsList[i].style.height = "45px";
                     elementsList[i].style.lineHeight = "45px";
-                    elementsList[i].style.border = "2px solid transparent";
                     break;
                 case "LETTUCE":
                     elementsList[i].style.backgroundColor = "#90EE90";
