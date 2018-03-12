@@ -56,6 +56,7 @@ var Sandwich = React.createClass({
         return (
             <div>
 
+                <div id={"panel"}>
                 <h1> Make a Sandwich</h1>
 
                 <form onSubmit={this.addIngredient}>
@@ -72,6 +73,7 @@ var Sandwich = React.createClass({
                 <button onClick={this.addCondiment} value={"Mustard"} id={"Mustard"}>Add Mustard</button>
                 <button onClick={this.addCondiment} value={"Mayo"} id={"Mayo"}>Add Mayo</button>
                 <h3> Touch the sandwich ingredients to colour them in! </h3>
+                </div>
 
                 <div id="row">
                     <div id="column"><Ingredients items={this.state.items} timestamp={this.state.timestamp}
