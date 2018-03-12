@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import Ingredients from './ingredients';
 import DeleteButton from './deletebutton';
 
@@ -54,10 +55,10 @@ class Sandwich extends Component {
     }
 
     render() {
-        return (
-            <div className={"Sandwich"}>
 
-                <div id={"panel"}>
+        return (
+            <div>
+                <div id="panel">
                 <h1> Make a Sandwich</h1>
 
                 <form onSubmit={this.addIngredient}>
@@ -92,6 +93,6 @@ class Sandwich extends Component {
 
 }
 
-React.render(<Sandwich/>, document.body);
+ReactDOM.render(<Sandwich/>, document.body);
 
 export default Sandwich;

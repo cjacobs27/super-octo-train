@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Sandwich from './sandwich';
 
 export default class Ingredients extends React.Component {
@@ -76,4 +77,4 @@ export default class Ingredients extends React.Component {
 }
 
 
-React.render(<Sandwich/>, document.body);
+ReactDOM.render(<Sandwich/>, document.body);
