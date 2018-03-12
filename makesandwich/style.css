@@ -1,5 +1,6 @@
 body {
-    background-image: url("background.jpg");
+    /*background-image: url("background.jpg");*/
+    background-color: #008f95;
     font-family: "Calibri", sans-serif;
     margin-left: 20px;
     background-repeat: repeat;
@@ -20,10 +21,10 @@ body {
 #panel {
     margin-left: 200px;
     padding-left: 50px;
-    background: -webkit-linear-gradient(top, rgba(245, 245, 245, 0.8) 0%, rgba(116, 199, 255, 0.51) 20%, #54b7dc 50%, rgba(121, 201, 255, 0.51) 80%, rgba(245, 245, 245, 0.8) 100%);
+    background: -webkit-linear-gradient(top, #EB6E80 0%, #e24e24 50%, #EB6E80 100%);
     width: 500px;
     box-shadow: 0 5px 10px rgba(0,0,0,.2);
-    border: 1px solid #7c00ff;
+    border: 1px solid #ffd500;
     border-radius: 12px;
 }
 
@@ -54,7 +55,7 @@ button {
     color: whitesmoke;
     border-color: transparent;
     border-radius: 12px;
-    background-color: #7c00ff;
+    background-color: #008f95;
 }
 
 button:hover {
@@ -73,10 +74,10 @@ button:active {
     margin-top: 5px;
     margin-bottom: 2px;
     -webkit-transition-duration: 0.2s;
-    color: #7c00ff;
+    color: #ffd500;
     font-weight: bold;
     background-color: transparent;
-    border: 1px solid #7c00ff;
+    border: 1px solid #ffd500;
     border-radius: 100%;
     animation-name: moveInRight;
     animation-duration: 1s;
@@ -125,7 +126,7 @@ button:active {
     position: relative;
     text-transform: uppercase;
     background-color: transparent;
-    border: 2px solid #7c00ff;
+    border: 2px solid #EB6E80;
     border-radius: 100px;
     animation-name: moveInLeft;
     animation-duration: 1s;
@@ -168,11 +169,11 @@ button:active {
 
 h1 {
     margin-left: 100px;
-    color: #7c00ff;
+    color: #ffd500;
 }
 
 h3 {
     margin-right: 75px;
     text-align: center;
-    color: #7c00ff;
+    color: #ffd500;
 }
