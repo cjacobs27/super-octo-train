@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom';
-// import Component from 'react';
 import Ingredients from './ingredients.js';
 import DeleteButton from './deletebutton.js';
 
@@ -81,7 +80,7 @@ export default class Sandwich extends Component {
                 <div id="row">
                     <div id="column"><Ingredients items={this.state.items} timestamp={this.state.timestamp}
                                                   removeIngredient={this.removeIngredient}/>
-                        <img src="../plate.png" id={"plate"} alt="sandwich plate"></img></div>
+                        <img src="plate.png" id={"plate"} alt="sandwich plate"></img></div>
                     <div id="column"><DeleteButton items={this.state.items} timestamp={this.state.timestamp}
                                                    removeIngredient={this.removeIngredient}/></div>
                 </div>
@@ -94,7 +93,7 @@ export default class Sandwich extends Component {
 
 }
 
-// export default Sandwich;
+export default Sandwich;
 
 ReactDOM.render(<Sandwich/>, document.body);
 

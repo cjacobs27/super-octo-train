@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom';
-// import Component from 'react';
-import Sandwich from './sandwich.js';
+import Sandwich from './index.js';
 
-// export default class DeleteButton extends React.Component {
 class DeleteButton extends React.Component {
 
     render() {
@@ -24,7 +22,6 @@ class DeleteButton extends React.Component {
 
 }
 
-export { DeleteButton as default}
-// export default DeleteButton;
+export default DeleteButton;
 
-ReactDOM.render(<Sandwich/>, document.body);
+ReactDOM.render(<Sandwich />, document.getElementById("app"));
