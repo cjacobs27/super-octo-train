@@ -83,7 +83,7 @@ export default class Sandwich extends React.Component {
                         <Ingredients items={this.state.items} timestamp={this.state.timestamp}
                                                   removeIngredient={this.removeIngredient}/>
 
-                        <img src="plate.png" id={"plate"} alt="sandwich plate"></img></div>
+                        <img src="../dist/plate.png" id={"plate"} alt="sandwich plate"></img></div>
 
                     <div id="column">
 

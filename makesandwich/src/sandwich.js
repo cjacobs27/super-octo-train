@@ -82,7 +82,7 @@ export default class Sandwich extends React.Component {
 
                         HEY HEY HEY </div>
 
-                        <img src="plate.png" id={"plate"} alt="sandwich plate"></img>
+                        <img src="../dist/plate.png" id={"plate"} alt="sandwich plate"></img>
 
                     </div>
 
