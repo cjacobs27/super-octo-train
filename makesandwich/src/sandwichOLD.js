@@ -80,18 +80,19 @@ export default class Sandwich extends React.Component {
                 <div id="row">
                     <div id="column">
 
-                        HEY HEY HEY </div>
+                        <Ingredients items={this.state.items} timestamp={this.state.timestamp}
+                                                  removeIngredient={this.removeIngredient}/>
 
-                        <img src="plate.png" id={"plate"} alt="sandwich plate"></img>
-
-                    </div>
+                        <img src="plate.png" id={"plate"} alt="sandwich plate"></img></div>
 
                     <div id="column">
 
-                        WOOOOOOOOOOOOOO </div>
+                        <DeleteButton items={this.state.items} timestamp={this.state.timestamp}
+                                                   removeIngredient={this.removeIngredient}/></div>
 
                 </div>
 
+            </div>
 
         );
 
@@ -100,4 +101,4 @@ export default class Sandwich extends React.Component {
 }
 
 
-ReactDOM.render(<Sandwich />, document.getElementById("app"));
+ReactDOM.render(<Sandwich/>, document.getElementById("app"));

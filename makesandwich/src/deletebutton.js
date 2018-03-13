@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom';
-import Sandwich from './sandwich.js';
+// import Sandwich from './sandwich.js';
 
 class DeleteButton extends React.Component {
 
