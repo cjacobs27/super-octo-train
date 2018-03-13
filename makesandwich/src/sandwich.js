@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import ReactDOM from 'react-dom';
-import Ingredients from './ingredients';
-import DeleteButton from './deletebutton';
+// import Component from 'react';
+import Ingredients from './ingredients.js';
+import DeleteButton from './deletebutton.js';
 
-class Sandwich extends Component {
+export default class Sandwich extends Component {
     constructor(props) {
         super(props);
 
@@ -93,6 +94,7 @@ class Sandwich extends Component {
 
 }
 
+// export default Sandwich;
+
 ReactDOM.render(<Sandwich/>, document.body);
 
-export default Sandwich;

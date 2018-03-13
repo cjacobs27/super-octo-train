@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react'
 import ReactDOM from 'react-dom';
-import Sandwich from './sandwich';
+import Sandwich from './sandwich.js';
 
-export default class Ingredients extends React.Component {
+// export default class Ingredients extends React.Component {
+class Ingredients extends React.Component {
 
     setColours(e) {
         function checkNotCustomIngredient() {
@@ -76,5 +77,6 @@ export default class Ingredients extends React.Component {
 
 }
 
+export { Ingredients as default}
 
 ReactDOM.render(<Sandwich/>, document.body);
