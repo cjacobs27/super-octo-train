@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Ingredients from './ingredients.js';
 import DeleteButton from './deletebutton.js';
 
-export default class Sandwich extends Component {
+class Sandwich extends Component {
     constructor(props) {
         super(props);
 
