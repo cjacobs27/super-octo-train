@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import ReactDOM from 'react-dom';
 import Ingredients from './ingredients.js';
-// import DeleteButton from './deletebutton.js';
+import DeleteButton from './deletebutton.js';
 
 
 // this export statement IS functioning, Pycharm just being weird
@@ -70,39 +70,40 @@ export default class Sandwich extends React.Component {
         return (
             <div>
                 <div id="panel">
-                <h1> Make a Sandwich</h1>
+                    <h1> Make a Sandwich</h1>
 
-                <form onSubmit={this.addIngredient}>
-                    <input placeholder="What do you want in your sandwich?" ref="input" onChange={this.onChange}
-                           key={this.state.timestamp} value={this.state.ingredient}/>
-                    <button>Add Ingredient</button>
-                </form>
+                    <form onSubmit={this.addIngredient}>
+                        <input placeholder="What do you want in your sandwich?" ref="input" onChange={this.onChange}
+                               key={this.state.timestamp} value={this.state.ingredient}/>
+                        <button>Add Ingredient</button>
+                    </form>
 
-                <br></br>
+                    <br></br>
 
-                <button onClick={this.addCondiment} value={"Bread"} id={"Bread"}>Add Bread</button>
-                <button onClick={this.addCondiment} value={"Lettuce"} id={"Lettuce"}>Add Lettuce</button>
-                <button onClick={this.addCondiment} value={"Ketchup"} id={"Ketchup"}>Add Ketchup</button>
-                <button onClick={this.addCondiment} value={"Mustard"} id={"Mustard"}>Add Mustard</button>
-                <button onClick={this.addCondiment} value={"Mayo"} id={"Mayo"}>Add Mayo</button>
-                <h3> Touch the sandwich ingredients to colour them in! </h3>
+                    <button onClick={this.addCondiment} value={"Bread"} id={"Bread"}>Add Bread</button>
+                    <button onClick={this.addCondiment} value={"Lettuce"} id={"Lettuce"}>Add Lettuce</button>
+                    <button onClick={this.addCondiment} value={"Ketchup"} id={"Ketchup"}>Add Ketchup</button>
+                    <button onClick={this.addCondiment} value={"Mustard"} id={"Mustard"}>Add Mustard</button>
+                    <button onClick={this.addCondiment} value={"Mayo"} id={"Mayo"}>Add Mayo</button>
+                    <h3> Touch the sandwich ingredients to colour them in! </h3>
                 </div>
 
-                <div id="row">
+                                <div id="row">
                     <div id="column">
 
-                    <Ingredients items={this.state.items} timestamp={this.state.timestamp}
-                      removeIngredient={this.removeIngredient}/></div>
+                        <Ingredients items={this.state.items} timestamp={this.state.timestamp}
+                                                  removeIngredient={this.removeIngredient}/>
 
-                    <img src="../dist/plate.png" id={"plate"} alt="sandwich plate"></img>
-
-                    </div>
+                        <img src="../dist/plate.png" id={"plate"} alt="sandwich plate"></img></div>
 
                     <div id="column">
 
-                        WOOOOOOOOOOOOOO </div>
+                        <DeleteButton items={this.state.items} timestamp={this.state.timestamp}
+                                                   removeIngredient={this.removeIngredient}/></div>
 
                 </div>
+
+            </div>
 
 
         );
@@ -112,4 +113,4 @@ export default class Sandwich extends React.Component {
 }
 
 
-ReactDOM.render(<Sandwich />, document.getElementById("app"));
+ReactDOM.render(<Sandwich/>, document.getElementById("app"));

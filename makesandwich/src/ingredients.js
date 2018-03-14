@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 // these ARE used, Pycharm just being weird
 import ReactDOM from 'react-dom';
 import Sandwich from './sandwich.js';
@@ -77,6 +77,3 @@ export default class Ingredients extends React.Component {
     }
 
 }
-
-// this line may be causing the "undefined element" error
-// ReactDOM.render(<Sandwich />, document.getElementById("app"));
