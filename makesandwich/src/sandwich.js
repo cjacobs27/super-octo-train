@@ -3,9 +3,17 @@ import ReactDOM from 'react-dom';
 import Ingredients from './ingredients.js';
 // import DeleteButton from './deletebutton.js';
 
+
+// this export statement IS functioning, Pycharm just being weird
+
 export default class Sandwich extends React.Component {
     constructor(props) {
         super(props);
+
+        this.onChange = this.onChange.bind(this);
+        this.addIngredient = this.addIngredient.bind(this);
+        this.addCondiment = this.addCondiment.bind(this);
+        this.removeIngredient = this.removeIngredient.bind(this);
 
         this.state = {
             items: [],
