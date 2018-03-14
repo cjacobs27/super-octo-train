@@ -28,6 +28,7 @@ export default class Sandwich extends React.Component {
             ingredient: e.target.value,
             time: String(Math.round(+new Date() + 1 / 1000)),
         });
+        ReactDOM.findDOMNode(this.refs.input).focus();
     }
 
     addIngredient(e) {
@@ -37,7 +38,7 @@ export default class Sandwich extends React.Component {
             timestamp: this.state.timestamp.concat([this.state.time]),
             time: '',
         });
-        React.findDOMNode(this.refs.input).focus();
+        ReactDOM.findDOMNode(this.refs.input).focus();
         e.preventDefault();
     }
 
@@ -48,7 +49,7 @@ export default class Sandwich extends React.Component {
             timestamp: this.state.timestamp.concat([String(Math.round(+new Date() + 1 / 1000))]),
             ingredient: ''
         });
-        React.findDOMNode(this.refs.input).focus();
+        ReactDOM.findDOMNode(this.refs.input).focus();
     }
 
     removeIngredient(e) {
