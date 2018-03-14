@@ -1,6 +1,11 @@
-const Ingredients = React.createClass({
+import React, {Component} from 'react'
+// these ARE used, Pycharm just being weird
+import ReactDOM from 'react-dom';
+import Sandwich from './sandwich.js';
 
-    setColours: function (e) {
+export default class Ingredients extends React.Component {
+
+    setColours(e) {
         function checkNotCustomIngredient() {
             return e.target.tagName.toLowerCase() === 'div' && e.target.innerText.toUpperCase() !== "BREAD"
                 && e.target.innerText.toUpperCase() !== "LETTUCE"
@@ -9,9 +14,9 @@ const Ingredients = React.createClass({
                 && e.target.innerText.toUpperCase() !== "MAYO"
         }
 
-        var elementsList = document.getElementsByClassName('ingList');
+        let elementsList = document.getElementsByClassName('ingList');
         for (let i = 0; i < elementsList.length; i++) {
-            var elementText = elementsList[i].innerText;
+            let elementText = elementsList[i].innerText;
             switch (elementText.toUpperCase()) {
                 case "BREAD":
                     elementsList[i].style.backgroundColor = "#b08568";
@@ -51,10 +56,11 @@ const Ingredients = React.createClass({
                     }
             }
         }
-    },
+    }
 
-    render: function () {
-        var displayIngredient = (ingredient) =>
+    render() {
+        console.log("ingredients.js ran");
+        let displayIngredient = (ingredient) =>
             <div id={ingredient} className={'ingList'} onMouseEnter={this.setColours}>
                 <li>
                     {ingredient}
@@ -70,7 +76,4 @@ const Ingredients = React.createClass({
         );
     }
 
-});
-
-
-React.render(<Sandwich/>, document.body);
+}

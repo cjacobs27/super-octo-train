@@ -21,7 +21,7 @@ body {
     padding-left: 50px;
     background: -webkit-linear-gradient(top, #cdcdcd 0%, #e9e9e9 50%, #cdcdcd 100%);
     width: 500px;
-    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
     border: 1px solid #E9E9E9;
     border-radius: 12px;
 }
@@ -40,12 +40,11 @@ ul {
     list-style-type: none;
 }
 
-
 li {
     text-align: center;
     list-style-type: none;
     display: inline-block;
-    color: rgba(0,0,0,.5);
+    color: rgba(0, 0, 0, .5);
 }
 
 button {
@@ -59,7 +58,7 @@ button {
 button:hover {
     transform: translateY(-3px);
     border: 2px solid #000000;
-    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
 }
 
 button:active {
@@ -128,7 +127,7 @@ button:active {
     border-radius: 100px;
     animation-name: moveInLeft;
     animation-duration: 1s;
-    box-shadow: 0 35px 20px rgba(0,0,0,.4);
+    box-shadow: 0 35px 20px rgba(0, 0, 0, .4);
 }
 
 #plate {
