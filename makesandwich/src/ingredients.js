@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom';
-// import Sandwich from './sandwich.js';
+import Sandwich from './sandwich.js';
 
-class Ingredients extends React.Component {
+export default class Ingredients extends React.Component {
 
     setColours(e) {
         function checkNotCustomIngredient() {
@@ -58,6 +58,7 @@ class Ingredients extends React.Component {
     }
 
     render() {
+        console.log("ingredients.js ran");
         let displayIngredient = (ingredient) =>
             <div id={ingredient} className={'ingList'} onMouseEnter={this.setColours}>
                 <li>
@@ -76,6 +77,5 @@ class Ingredients extends React.Component {
 
 }
 
-export default Ingredients;
-
-ReactDOM.render(<Sandwich />, document.getElementById("app"));
+// this line may be causing the "undefined element" error
+// ReactDOM.render(<Sandwich />, document.getElementById("app"));

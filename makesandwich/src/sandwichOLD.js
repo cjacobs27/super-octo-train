@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 // import Ingredients from './ingredients.js';
 // import DeleteButton from './deletebutton.js';
 
+// this export statement IS being used
 export default class Sandwich extends React.Component {
     constructor(props) {
         super(props);

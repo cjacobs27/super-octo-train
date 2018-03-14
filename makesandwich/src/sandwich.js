@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from 'react-dom';
-// import Ingredients from './ingredients.js';
+import Ingredients from './ingredients.js';
 // import DeleteButton from './deletebutton.js';
 
 export default class Sandwich extends React.Component {
@@ -56,6 +56,8 @@ export default class Sandwich extends React.Component {
 
     render() {
 
+        console.log("sandwich.js ran");
+
         return (
             <div>
                 <div id="panel">
@@ -80,9 +82,10 @@ export default class Sandwich extends React.Component {
                 <div id="row">
                     <div id="column">
 
-                        HEY HEY HEY </div>
+                    <Ingredients items={this.state.items} timestamp={this.state.timestamp}
+                      removeIngredient={this.removeIngredient}/></div>
 
-                        <img src="../dist/plate.png" id={"plate"} alt="sandwich plate"></img>
+                    <img src="../dist/plate.png" id={"plate"} alt="sandwich plate"></img>
 
                     </div>
 
