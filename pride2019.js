@@ -31,7 +31,6 @@ function showText() {
     textX = 0;
   }
 
-
   strokeWeight(2);
   noFill();
   let heartColour = textX / 2;
@@ -71,8 +70,7 @@ function calcWave() {
 
 function renderWave() {
   noStroke();
-
-
+  
   // A simple way to draw the wave with an ellipse at each location
   for (let x = 0; x < yvalues.length; x++) {
     let rainbow = x;
