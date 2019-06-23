@@ -1,3 +1,4 @@
+// View this animation here: https://editor.p5js.org/cjacobs27/present/MTpiWjU-j
 let xspacing = 5; // Distance between each horizontal location
 let w; // Width of entire wave
 let theta = 6.0; // Start angle at 0
