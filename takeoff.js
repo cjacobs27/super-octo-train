@@ -1,3 +1,4 @@
+// View the animation here: https://editor.p5js.org/cjacobs27/present/3f6Su0m6v
 const grid = {
   rows: 10,
   cols: 10
